@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, language, setL
             <img
               src={logosvg}
               alt="Bombolo"
-              className="h-16 w-auto md:h-20 drop-shadow-lg mix-blend-multiply"
+              className="h-12 w-auto transition-transform duration-300 hover:scale-110"
             />
           </div>
         </a>

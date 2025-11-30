@@ -4,13 +4,15 @@ import { Language } from '../App';
 import pistachioHero from '../src/assets/pistachio.jpg';
 import chocolateHero from '../src/assets/chocolate.jpg';
 import fragolaHero from '../src/assets/fragola.jpg';
+import waffleHero from '../src/assets/waffle.jpg';
+import cafeHero from '../src/assets/CAFFE AFFOGATO.JPG';
 
 interface HeroProps {
   language: Language;
 }
 
 const Hero: React.FC<HeroProps> = ({ language }) => {
-  const images = [pistachioHero, chocolateHero, fragolaHero];
+  const images = [pistachioHero, chocolateHero, fragolaHero, waffleHero, cafeHero];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -34,7 +36,9 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
           <img
             src={img}
             alt="Bombolo Gelato"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center hero-zoom"
+            loading={index === 0 ? "eager" : "lazy"}
+            {...({ fetchPriority: index === 0 ? "high" : "auto" } as React.ImgHTMLAttributes<HTMLImageElement>)}
           />
           {/* Lighter Overlay */}
           <div className="absolute inset-0 bg-black/30" />

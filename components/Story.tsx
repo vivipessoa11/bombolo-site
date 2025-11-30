@@ -10,12 +10,12 @@ const Story: React.FC<StoryProps> = ({ language }) => {
   const t = {
     subtitle: language === 'GR' ? 'Η Ιστορία του Ιδρυτή' : 'The Founder\'s Story',
     title: language === 'GR' ? 'Από τον Κόσμο στη Θεσσαλονίκη' : 'From The World to Thessaloniki',
-    p1: language === 'GR' 
-        ? 'Το Bombolo είναι το αποτέλεσμα μιας ζωής εξερεύνησης. Ο ιδρυτής μας, ένας πραγματικός πολίτης του κόσμου, ταξίδεψε εκτενώς στην Τοσκάνη και τη Σικελία, ξεκλειδώνοντας τα πανάρχαια μυστικά των Ιταλών "μαέστρων".' 
-        : 'Bombolo is the culmination of a life spent exploring. Our founder, a true citizen of the world, traveled extensively through Tuscany and Sicily, unlocking the age-old secrets of the Italian "maestros."',
+    p1: language === 'GR'
+      ? 'Το Bombolo είναι το αποτέλεσμα μιας ζωής εξερεύνησης. Ο ιδρυτής μας, ένας πραγματικός πολίτης του κόσμου, ταξίδεψε εκτενώς στην Τοσκάνη και τη Σικελία, ξεκλειδώνοντας τα πανάρχαια μυστικά των Ιταλών "μαέστρων".'
+      : 'Bombolo is the culmination of a life spent exploring. Our founder, a true citizen of the world, traveled extensively through Tuscany and Sicily, unlocking the age-old secrets of the Italian "maestros."',
     p2: language === 'GR'
-        ? 'Έφερε αυτή τη γνώση πίσω στη Θεσσαλονίκη, τη γαστρονομική πρωτεύουσα της Ελλάδας. Εδώ, ενώνουμε παραδοσιακές ιταλικές τεχνικές με μια αδιάκοπη εμμονή για ποιότητα.'
-        : 'He brought this knowledge back to Thessaloniki, the gastronomic capital of Greece. Here, we fuse traditional Italian techniques with a relentless obsession for quality.',
+      ? 'Έφερε αυτή τη γνώση πίσω στη Θεσσαλονίκη, τη γαστρονομική πρωτεύουσα της Ελλάδας. Εδώ, ενώνουμε παραδοσιακές ιταλικές τεχνικές με μια αδιάκοπη εμμονή για ποιότητα.'
+      : 'He brought this knowledge back to Thessaloniki, the gastronomic capital of Greece. Here, we fuse traditional Italian techniques with a relentless obsession for quality.',
     sourceTitle: language === 'GR' ? 'Πρώτες Ύλες' : 'Premium Sourcing',
     sourceDesc: language === 'GR' ? 'Προμηθευόμαστε αυστηρά από τις καλύτερες περιοχές: Φιστίκια από το Bronte, Φουντούκια από το Πιεμόντε και Κακάο από την Κολομβία.' : 'We source strictly from the best regions: Pistachios from Bronte, Hazelnuts from Piedmont, and Cacao from Colombia.',
     prepTitle: language === 'GR' ? 'Καθημερινή Παρασκευή' : 'Prepared Daily',
@@ -32,14 +32,15 @@ const Story: React.FC<StoryProps> = ({ language }) => {
 
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* Image Composition */}
           <div className="relative">
             <div className="aspect-[4/5] md:aspect-square overflow-hidden rounded-sm shadow-2xl border-4 border-white">
-              <img 
-                src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?q=80&w=2680&auto=format&fit=crop" 
-                alt="Artisan Gelato Making" 
+              <img
+                src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?q=80&w=2680&auto=format&fit=crop"
+                alt="Artisan Gelato Making"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="lazy"
               />
             </div>
             {/* Floating Card */}
@@ -68,17 +69,17 @@ const Story: React.FC<StoryProps> = ({ language }) => {
             <div className="space-y-6 pt-4 border-t border-brand-dark/10">
               <div className="flex items-start gap-4">
                 <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                   <Globe2 size={24} strokeWidth={1.5} />
+                  <Globe2 size={24} strokeWidth={1.5} />
                 </div>
                 <div>
                   <h4 className="font-serif text-xl text-brand-dark font-bold">{t.sourceTitle}</h4>
                   <p className="text-brand-dark/70">{t.sourceDesc}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start gap-4">
                 <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                   <ChefHat size={24} strokeWidth={1.5} />
+                  <ChefHat size={24} strokeWidth={1.5} />
                 </div>
                 <div>
                   <h4 className="font-serif text-xl text-brand-dark font-bold">{t.prepTitle}</h4>
@@ -86,9 +87,9 @@ const Story: React.FC<StoryProps> = ({ language }) => {
                 </div>
               </div>
 
-               <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4">
                 <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                   <Droplet size={24} strokeWidth={1.5} />
+                  <Droplet size={24} strokeWidth={1.5} />
                 </div>
                 <div>
                   <h4 className="font-serif text-xl text-brand-dark font-bold">{t.pureTitle}</h4>

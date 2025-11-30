@@ -208,6 +208,7 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                            src="https://images.unsplash.com/photo-1557142046-c704a3adf364?q=80&w=2574&auto=format&fit=crop"
                            alt="Artisan Gelato Scoops"
                            className="w-full h-full object-cover"
+                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                            <h2 className="font-serif text-4xl md:text-5xl text-white drop-shadow-lg">{t.dailyFresh}</h2>
