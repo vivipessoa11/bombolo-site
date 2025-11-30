@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bombolo Gelato | Thessaloniki</title>
+  <meta name="description"
+    content="Authentic artisanal gelato in Thessaloniki. A journey of the senses with premium ingredients from Italy and beyond." />
+
+  <!-- Favicon (Brand "Ok" Hand/Logo Concept) -->
+  <link rel="icon" href="/logo2.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'serif'],
+            sans: ['"Lato"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#2B1A17', // Dark brown (background)
+              gold: '#C59A3B', // Premium gold (discreto)
+              cream: '#F6F0E8', // Elegant off-white (text/fundo luxuoso)
+              text: '#3A2320', // Text brown
+              pistachio: '#93C572', // Keeping for accents if needed, or replace if strict
+              berry: '#8B2E3E', // Keeping for accents
+              surface: '#F6F0E8', // Matching cream
+            }
+          },
+          animation: {
+            'subtle-scale': 'subtle-scale 20s ease-in-out infinite alternate',
+            'slide-up': 'slideUp 0.8s ease-out forwards',
+            'fade-in': 'fadeIn 1s ease-out forwards',
+          },
+          keyframes: {
+            'subtle-scale': {
+              '0%': { transform: 'scale(1.0)' },
+              '100%': { transform: 'scale(1.05)' },
+            },
+            slideUp: {
+              'from': { opacity: '0', transform: 'translateY(30px)' },
+              'to': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              'from': { opacity: '0' },
+              'to': { opacity: '1' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Smooth scrolling for anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body class="bg-brand-cream text-brand-dark antialiased selection:bg-brand-gold selection:text-white">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>
