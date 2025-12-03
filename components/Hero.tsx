@@ -24,7 +24,7 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
   }, [images.length]);
 
   return (
-    <div className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-brand-dark">
+    <div className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-brand-dark">
 
       {/* Background Image Slideshow */}
       {images.map((img, index) => (
@@ -51,10 +51,10 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
 
         {/* Main Headline - Specific Greek Text */}
         <div className="flex flex-col items-center mb-10">
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-brand-cream font-medium leading-tight mb-2 drop-shadow-2xl animate-slide-up">
+          <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl text-brand-cream font-medium leading-tight mb-2 drop-shadow-2xl animate-slide-up">
             {language === 'GR' ? 'Βελούδινη Υφή. Κρεμώδες.' : 'Velvety Texture. Creamy.'}
           </h1>
-          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-brand-gold font-medium leading-tight mb-8 drop-shadow-2xl italic animate-slide-up delay-200">
+          <h2 className="font-serif text-3xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-8 drop-shadow-2xl italic animate-slide-up delay-200">
             {language === 'GR' ? 'Αυθεντικό.' : 'Authentic.'}
           </h2>
         </div>
@@ -63,7 +63,7 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
         <div className="animate-fade-in delay-500">
           <a
             href="#menu"
-            className="group relative px-8 py-3 border border-brand-cream/60 text-brand-cream font-sans text-xs md:text-sm tracking-[0.25em] uppercase transition-all duration-500 hover:bg-brand-cream hover:text-brand-dark hover:border-brand-cream"
+            className="group relative px-8 py-3 bg-brand-red text-white font-sans text-xs md:text-sm tracking-[0.25em] uppercase transition-all duration-300 hover:bg-brand-red/90 hover:scale-105 shadow-lg"
           >
             <span className="relative z-10">{language === 'GR' ? 'Ανακαλυψτε' : 'Discover'}</span>
           </a>

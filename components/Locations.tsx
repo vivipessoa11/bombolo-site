@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Clock, Phone, ExternalLink, Loader2, Navigation } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
+import { Reveal } from './Reveal';
 import { Language } from '../App';
 
 interface LocationsProps {
@@ -25,12 +26,12 @@ const Locations: React.FC<LocationsProps> = ({ language }) => {
   useEffect(() => {
     const fetchRealTimeHours = async () => {
       try {
-        const hasKey = (window as any).aistudio 
-            ? await (window as any).aistudio.hasSelectedApiKey() 
-            : !!process.env.API_KEY;
+        const hasKey = (window as any).aistudio
+          ? await (window as any).aistudio.hasSelectedApiKey()
+          : !!process.env.API_KEY;
 
         if (!hasKey) {
-            throw new Error("No API Key selected");
+          throw new Error("No API Key selected");
         }
 
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
@@ -80,156 +81,164 @@ const Locations: React.FC<LocationsProps> = ({ language }) => {
     <div className="py-24 bg-brand-dark text-white">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-brand-gold font-bold tracking-widest uppercase text-sm mb-3">{t.visit}</h2>
-          <h3 className="font-serif text-4xl md:text-5xl text-white">{t.locations}</h3>
+          <Reveal width="100%">
+            <h2 className="text-brand-gold font-bold tracking-widest uppercase text-sm mb-3 text-center">{t.visit}</h2>
+          </Reveal>
+          <Reveal width="100%" delay={200}>
+            <h3 className="font-serif text-4xl md:text-5xl text-white text-center">{t.locations}</h3>
+          </Reveal>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="flex lg:grid lg:grid-cols-2 gap-6 lg:gap-12 overflow-x-auto snap-x snap-mandatory pb-8 lg:pb-0 scrollbar-hide">
           {/* Location 1: Mitropoleos */}
-          <div className="flex flex-col bg-white/5 rounded-lg border border-white/10 hover:border-brand-gold/50 transition-colors overflow-hidden">
-            <div className="w-full h-64 relative bg-gray-800">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  frameBorder="0" 
-                  scrolling="no" 
-                  marginHeight={0} 
-                  marginWidth={0} 
+          <Reveal width="100%" className="min-w-[85vw] lg:min-w-0 snap-center">
+            <div className="flex flex-col bg-white/5 rounded-lg border border-white/10 hover:border-brand-gold/50 transition-colors overflow-hidden h-full">
+              <div className="w-full h-64 relative bg-gray-800">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  marginHeight={0}
+                  marginWidth={0}
                   src="https://maps.google.com/maps?q=Bombolo+Gelato+Mitropoleos+88+Thessaloniki&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   title="Bombolo Mitropoleos Map"
                   className="grayscale hover:grayscale-0 transition-all duration-500"
                 ></iframe>
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pointer-events-none">
-                   <span className="bg-brand-dark px-3 py-1 text-xs uppercase tracking-widest font-bold text-brand-gold">{t.center}</span>
+                  <span className="bg-brand-dark px-3 py-1 text-xs uppercase tracking-widest font-bold text-brand-gold">{t.center}</span>
                 </div>
-            </div>
+              </div>
 
-            <div className="p-8 space-y-6">
+              <div className="p-8 space-y-6">
                 <div className="flex justify-between items-start">
-                    <h4 className="font-serif text-3xl text-brand-gold">Mitropoleos</h4>
-                     <a 
-                      href={locationData.mitropoleos.link || "https://maps.google.com/?q=Bombolo+Gelato+Mitropoleos+88+Thessaloniki"}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="p-2 bg-brand-gold text-brand-dark rounded-full hover:bg-white transition-colors"
-                      title="Get Directions"
+                  <h4 className="font-serif text-3xl text-brand-gold">Mitropoleos</h4>
+                  <a
+                    href={locationData.mitropoleos.link || "https://maps.google.com/?q=Bombolo+Gelato+Mitropoleos+88+Thessaloniki"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-brand-gold text-brand-dark rounded-full hover:bg-white transition-colors"
+                    title="Get Directions"
                   >
-                      <Navigation size={20} />
+                    <Navigation size={20} />
                   </a>
                 </div>
-                
-                <div className="space-y-4">
-                    <div className="flex items-start gap-4 text-gray-300 group">
-                        <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
-                            <MapPin className="w-5 h-5 shrink-0" />
-                        </div>
-                        <div>
-                            <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.address}</p>
-                            <p className="font-serif text-lg leading-relaxed">Mitropoleos 88<br/>Thessaloniki 546 22</p>
-                        </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4 text-gray-300 group">
-                        <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
-                             <Clock className="w-5 h-5 shrink-0" />
-                        </div>
-                        <div>
-                             <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.hours}</p>
-                             <div className="font-serif text-lg">
-                              {locationData.mitropoleos.hours === 'Loading...' ? (
-                                <span className="flex items-center gap-2 italic text-base text-gray-400"><Loader2 className="animate-spin w-4 h-4" /> Live checking...</span>
-                              ) : (
-                                <p>{locationData.mitropoleos.hours}</p>
-                              )}
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="flex items-start gap-4 text-gray-300 group">
-                         <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
-                            <Phone className="w-5 h-5 shrink-0" />
-                         </div>
-                         <div>
-                            <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.contact}</p>
-                            <p className="font-serif text-lg">+30 231 022 9398</p>
-                         </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4 text-gray-300 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
+                      <MapPin className="w-5 h-5 shrink-0" />
                     </div>
+                    <div>
+                      <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.address}</p>
+                      <p className="font-serif text-lg leading-relaxed">Mitropoleos 88<br />Thessaloniki 546 22</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 text-gray-300 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
+                      <Clock className="w-5 h-5 shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.hours}</p>
+                      <div className="font-serif text-lg">
+                        {locationData.mitropoleos.hours === 'Loading...' ? (
+                          <span className="flex items-center gap-2 italic text-base text-gray-400"><Loader2 className="animate-spin w-4 h-4" /> Live checking...</span>
+                        ) : (
+                          <p>{locationData.mitropoleos.hours}</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 text-gray-300 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
+                      <Phone className="w-5 h-5 shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.contact}</p>
+                      <p className="font-serif text-lg">+30 231 022 9398</p>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-          </div>
+          </Reveal>
 
           {/* Location 2: Toumpa */}
-           <div className="flex flex-col bg-white/5 rounded-lg border border-white/10 hover:border-brand-gold/50 transition-colors overflow-hidden">
-            <div className="w-full h-64 relative bg-gray-800">
-                 <iframe 
-                  width="100%" 
-                  height="100%" 
-                  frameBorder="0" 
-                  scrolling="no" 
-                  marginHeight={0} 
-                  marginWidth={0} 
+          <Reveal width="100%" delay={200} className="min-w-[85vw] lg:min-w-0 snap-center">
+            <div className="flex flex-col bg-white/5 rounded-lg border border-white/10 hover:border-brand-gold/50 transition-colors overflow-hidden h-full">
+              <div className="w-full h-64 relative bg-gray-800">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  marginHeight={0}
+                  marginWidth={0}
                   src="https://maps.google.com/maps?q=Bombolo+Gelato+Grigoriou+Lampraki+150+Thessaloniki&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   title="Bombolo Toumpa Map"
                   className="grayscale hover:grayscale-0 transition-all duration-500"
                 ></iframe>
-                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pointer-events-none">
-                   <span className="bg-brand-dark px-3 py-1 text-xs uppercase tracking-widest font-bold text-brand-gold">Toumpa</span>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pointer-events-none">
+                  <span className="bg-brand-dark px-3 py-1 text-xs uppercase tracking-widest font-bold text-brand-gold">Toumpa</span>
                 </div>
-            </div>
+              </div>
 
-            <div className="p-8 space-y-6">
+              <div className="p-8 space-y-6">
                 <div className="flex justify-between items-start">
-                    <h4 className="font-serif text-3xl text-brand-gold">Grigoriou Lampraki</h4>
-                    <a 
-                      href={locationData.toumpa.link || "https://maps.google.com/?q=Bombolo+Gelato+Grigoriou+Lampraki+150+Thessaloniki"}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="p-2 bg-brand-gold text-brand-dark rounded-full hover:bg-white transition-colors"
-                      title="Get Directions"
+                  <h4 className="font-serif text-3xl text-brand-gold">Grigoriou Lampraki</h4>
+                  <a
+                    href={locationData.toumpa.link || "https://maps.google.com/?q=Bombolo+Gelato+Grigoriou+Lampraki+150+Thessaloniki"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-brand-gold text-brand-dark rounded-full hover:bg-white transition-colors"
+                    title="Get Directions"
                   >
-                      <Navigation size={20} />
+                    <Navigation size={20} />
                   </a>
                 </div>
-                
-                <div className="space-y-4">
-                     <div className="flex items-start gap-4 text-gray-300 group">
-                        <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
-                            <MapPin className="w-5 h-5 shrink-0" />
-                        </div>
-                        <div>
-                            <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.address}</p>
-                            <p className="font-serif text-lg leading-relaxed">Grigoriou Lampraki 150<br/>Thessaloniki 543 51</p>
-                        </div>
-                    </div>
-                
-                     <div className="flex items-start gap-4 text-gray-300 group">
-                        <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
-                             <Clock className="w-5 h-5 shrink-0" />
-                        </div>
-                        <div>
-                             <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.hours}</p>
-                             <div className="font-serif text-lg">
-                              {locationData.toumpa.hours === 'Loading...' ? (
-                                <span className="flex items-center gap-2 italic text-base text-gray-400"><Loader2 className="animate-spin w-4 h-4" /> Live checking...</span>
-                              ) : (
-                                 <p>{locationData.toumpa.hours}</p>
-                              )}
-                            </div>
-                        </div>
-                    </div>
 
-                    <div className="flex items-start gap-4 text-gray-300 group">
-                         <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
-                            <Phone className="w-5 h-5 shrink-0" />
-                         </div>
-                         <div>
-                            <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.contact}</p>
-                            <p className="font-serif text-lg">+30 231 022 9398</p>
-                         </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4 text-gray-300 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
+                      <MapPin className="w-5 h-5 shrink-0" />
                     </div>
+                    <div>
+                      <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.address}</p>
+                      <p className="font-serif text-lg leading-relaxed">Grigoriou Lampraki 150<br />Thessaloniki 543 51</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 text-gray-300 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
+                      <Clock className="w-5 h-5 shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.hours}</p>
+                      <div className="font-serif text-lg">
+                        {locationData.toumpa.hours === 'Loading...' ? (
+                          <span className="flex items-center gap-2 italic text-base text-gray-400"><Loader2 className="animate-spin w-4 h-4" /> Live checking...</span>
+                        ) : (
+                          <p>{locationData.toumpa.hours}</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4 text-gray-300 group">
+                    <div className="p-2 bg-white/5 rounded-full group-hover:text-brand-gold transition-colors">
+                      <Phone className="w-5 h-5 shrink-0" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-white uppercase tracking-wide text-sm mb-1">{t.contact}</p>
+                      <p className="font-serif text-lg">+30 231 022 9398</p>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </div>

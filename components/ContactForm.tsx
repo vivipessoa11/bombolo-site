@@ -6,9 +6,10 @@ interface ContactFormProps {
   isOpen: boolean;
   onClose: () => void;
   language: Language;
+  initialSubject?: string | null;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language }) => {
+const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, initialSubject }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,17 +39,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language }) 
     ? ['Ιδέα', 'Βελτιώσεις', 'Franchise', 'Συνεργασία', 'Άλλο']
     : ['Idea', 'Improvements', 'Franchise', 'Partnership', 'Other'];
 
-  // Lock body scroll when modal is open
+  // Lock body scroll when modal is open and set initial subject
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      if (initialSubject) {
+        setFormData(prev => ({ ...prev, subject: initialSubject }));
+      }
     } else {
       document.body.style.overflow = 'unset';
     }
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen]);
+  }, [isOpen, initialSubject]);
 
   if (!isOpen) return null;
 
@@ -122,8 +126,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language }) 
                       type="button"
                       onClick={() => setFormData(prev => ({ ...prev, subject: subj }))}
                       className={`px-4 py-2 rounded-full border text-xs font-bold transition-all duration-200 ${formData.subject === subj
-                          ? 'bg-brand-dark border-brand-dark text-white shadow-md'
-                          : 'bg-white border-gray-200 text-gray-500 hover:border-brand-gold hover:text-brand-gold'
+                        ? 'bg-brand-dark border-brand-dark text-white shadow-md'
+                        : 'bg-white border-gray-200 text-gray-500 hover:border-brand-gold hover:text-brand-gold'
                         }`}
                     >
                       {subj}

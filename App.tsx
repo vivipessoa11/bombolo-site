@@ -9,6 +9,7 @@ import Locations from './components/Locations';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import StickySocials from './components/StickySocials';
+import InstagramFeed from './components/InstagramFeed';
 
 
 export type Language = 'GR' | 'EN';
@@ -16,6 +17,7 @@ export type Language = 'GR' | 'EN';
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [contactSubject, setContactSubject] = useState<string | null>(null);
 
   // Default Language is Greek as requested
   const [language, setLanguage] = useState<Language>('GR');
@@ -28,12 +30,16 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleOpenContact = (subject?: string) => {
+    setContactSubject(subject || null);
+    setIsContactOpen(true);
+  };
+
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <Navbar
         scrolled={scrolled}
-        onOpenContact={() => setIsContactOpen(true)}
-
+        onOpenContact={() => handleOpenContact()}
         language={language}
         setLanguage={setLanguage}
       />
@@ -46,6 +52,7 @@ export default function App() {
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
         language={language}
+        initialSubject={contactSubject}
       />
 
       <main className="flex-grow">
@@ -79,8 +86,13 @@ export default function App() {
           <Locations language={language} />
         </section>
 
+        {/* Instagram Feed */}
+        <section id="social">
+          <InstagramFeed language={language} />
+        </section>
+
       </main>
-      <Footer language={language} />
+      <Footer language={language} onOpenContact={handleOpenContact} />
     </div>
   );
 }

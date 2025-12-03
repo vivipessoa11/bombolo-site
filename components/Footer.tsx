@@ -4,34 +4,50 @@ import { Language } from '../App';
 
 interface FooterProps {
   language: Language;
+  onOpenContact: (subject?: string) => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ language }) => {
+const Footer: React.FC<FooterProps> = ({ language, onOpenContact }) => {
   return (
-    <footer className="bg-black text-white py-12 border-t border-white/10">
+    <footer className="bg-brand-cream text-brand-brown py-10 border-t border-brand-brown/10">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          
-          <div className="mb-8 md:mb-0 text-center md:text-left">
-            <h4 className="font-serif text-3xl font-bold mb-2">Bombolo</h4>
-            <p className="text-gray-400 text-sm tracking-wide">
-              {language === 'GR' ? 'Αυθεντικό Χειροποίητο Gelato' : 'Authentic Artisanal Gelato'}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+
+          {/* Column 1: Brand */}
+          <div className="text-center md:text-left">
+            <h4 className="font-serif text-2xl font-bold text-brand-brown mb-2">Bombolo.</h4>
+            <p className="text-brand-brown/70 text-xs tracking-wide max-w-xs mx-auto md:mx-0">
+              {language === 'GR' ? 'Αυθεντικό Gelato.' : 'Authentic Gelato.'}
             </p>
           </div>
 
-          <div className="flex space-x-8 mb-8 md:mb-0">
-             <a href="https://instagram.com" className="hover:text-brand-gold transition-colors"><Instagram size={24} /></a>
-             <a href="https://facebook.com" className="hover:text-brand-gold transition-colors"><Facebook size={24} /></a>
-             <a href="https://youtube.com" className="hover:text-brand-gold transition-colors"><Youtube size={24} /></a>
+          {/* Column 2: Locations */}
+          <div className="text-center">
+            <ul className="space-y-1 text-xs text-brand-brown/80 font-medium">
+              <li>Mitropoleos 88</li>
+              <li>Grigoriou Lampraki 150</li>
+            </ul>
+            <button
+              onClick={() => onOpenContact('Franchise')}
+              className="mt-4 text-[10px] uppercase tracking-widest font-bold text-brand-gold hover:text-brand-dark transition-colors border-b border-brand-gold/50 pb-0.5"
+            >
+              {language === 'GR' ? 'Franchise & Συνεργασιες' : 'Franchise & B2B'}
+            </button>
           </div>
 
-          <div className="text-center md:text-right">
-            <a href="mailto:info@bombologelato.com" className="flex items-center gap-2 justify-center md:justify-end hover:text-brand-gold transition-colors mb-2">
-                <Mail size={16} />
-                <span>info@bombologelato.com</span>
+          {/* Column 3: Contact & Social */}
+          <div className="text-center md:text-right flex flex-col items-center md:items-end gap-4">
+            <a href="mailto:info@bombologelato.com" className="flex items-center gap-2 hover:text-brand-gold transition-colors group">
+              <Mail size={16} />
+              <span className="font-medium text-sm">info@bombologelato.com</span>
             </a>
-            <p className="text-gray-500 text-xs">
-              © {new Date().getFullYear()} Bombolo Gelato. All rights reserved.
+            <div className="flex space-x-4">
+              <a href="https://instagram.com" className="hover:text-brand-gold transition-colors"><Instagram size={18} /></a>
+              <a href="https://facebook.com" className="hover:text-brand-gold transition-colors"><Facebook size={18} /></a>
+              <a href="https://youtube.com" className="hover:text-brand-gold transition-colors"><Youtube size={18} /></a>
+            </div>
+            <p className="text-brand-brown/40 text-[10px]">
+              © {new Date().getFullYear()} Bombolo Gelato.
             </p>
           </div>
 

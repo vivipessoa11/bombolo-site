@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 .hero-zoom {
   animation: heroZoom 22s ease-in-out infinite alternate;
 }
@@ -10,6 +14,7 @@
   from {
     transform: scale(1.02);
   }
+
   to {
     transform: scale(1.10);
   }
