@@ -1,6 +1,7 @@
 import React from 'react';
 import { Instagram, Facebook, Youtube, Mail } from 'lucide-react';
 import { Language } from '../App';
+import logo from '../src/assets/logotracer.svg';
 
 interface FooterProps {
   language: Language;
@@ -15,7 +16,7 @@ const Footer: React.FC<FooterProps> = ({ language, onOpenContact }) => {
 
           {/* Column 1: Brand */}
           <div className="text-center md:text-left">
-            <h4 className="font-serif text-2xl font-bold text-brand-brown mb-2">Bombolo.</h4>
+            <img src={logo} alt="Bombolo" className="h-16 w-auto mb-4 mx-auto md:mx-0 brightness-0" />
             <p className="text-brand-brown/70 text-xs tracking-wide max-w-xs mx-auto md:mx-0">
               {language === 'GR' ? 'Αυθεντικό Gelato.' : 'Authentic Gelato.'}
             </p>
@@ -23,9 +24,27 @@ const Footer: React.FC<FooterProps> = ({ language, onOpenContact }) => {
 
           {/* Column 2: Locations */}
           <div className="text-center">
-            <ul className="space-y-1 text-xs text-brand-brown/80 font-medium">
-              <li>Mitropoleos 88</li>
-              <li>Grigoriou Lampraki 150</li>
+            <ul className="space-y-2 text-xs text-brand-brown/80 font-medium">
+              <li>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Bombolo+Gelato+Mitropoleos+88+Thessaloniki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-gold transition-colors"
+                >
+                  Mitropoleos 88
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com/maps/search/Bombolo+Gelato+Grigoriou+Lampraki+150,+Thessaloniki+543+51"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-gold transition-colors"
+                >
+                  Grigoriou Lampraki 150
+                </a>
+              </li>
             </ul>
             <button
               onClick={() => onOpenContact('Franchise')}
@@ -42,9 +61,9 @@ const Footer: React.FC<FooterProps> = ({ language, onOpenContact }) => {
               <span className="font-medium text-sm">info@bombologelato.com</span>
             </a>
             <div className="flex space-x-4">
-              <a href="https://instagram.com" className="hover:text-brand-gold transition-colors"><Instagram size={18} /></a>
-              <a href="https://facebook.com" className="hover:text-brand-gold transition-colors"><Facebook size={18} /></a>
-              <a href="https://youtube.com" className="hover:text-brand-gold transition-colors"><Youtube size={18} /></a>
+              <a href="https://instagram.com/bomboloskg/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors"><Instagram size={18} /></a>
+              <a href="https://www.facebook.com/bomboloskg" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors"><Facebook size={18} /></a>
+              <a href="https://youtube.com/@bombologelato" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors"><Youtube size={18} /></a>
             </div>
             <p className="text-brand-brown/40 text-[10px]">
               © {new Date().getFullYear()} Bombolo Gelato.

@@ -5,12 +5,13 @@ import { Language } from '../App';
 interface NavbarProps {
   scrolled: boolean;
   onOpenContact: () => void;
+  onOpenDelivery: () => void;
 
   language: Language;
   setLanguage: (lang: Language) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, language, setLanguage }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, onOpenDelivery, language, setLanguage }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Prevent scrolling when menu is open
@@ -87,14 +88,12 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, language, setL
             </div>
 
             {/* Delivery Button */}
-            <a
-              href="https://wolt.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={onOpenDelivery}
               className={`flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:-translate-y-0.5 ${scrolled ? 'text-brand-dark hover:text-brand-gold' : 'text-white hover:text-brand-gold'}`}
             >
-              <Bike size={18} strokeWidth={1.5} />
-            </a>
+              <Bike size={18} strokeWidth={1.5} /> {t.delivery}
+            </button>
 
             {/* Visit Us Button */}
             <a
@@ -177,17 +176,18 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, language, setL
             className={`mt-12 pt-12 border-t border-gray-100 flex flex-col gap-6 transition-all duration-700 delay-500 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
           >
-            <a
-              href="https://wolt.com"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                onOpenDelivery();
+              }}
               className="flex items-center gap-3 text-brand-dark hover:text-brand-gold transition-colors group"
             >
               <div className="p-3 bg-gray-50 rounded-full group-hover:bg-brand-gold/10 transition-colors">
                 <Bike size={24} strokeWidth={1.5} />
               </div>
               <span className="font-bold tracking-widest uppercase text-sm">{t.delivery}</span>
-            </a>
+            </button>
 
             <a
               href="#locations"

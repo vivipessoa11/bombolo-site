@@ -36,7 +36,7 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ language }) => {
                 <div className="text-center mb-12">
                     <Reveal width="100%">
                         <a
-                            href="https://instagram.com"
+                            href="https://instagram.com/bomboloskg/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 text-brand-dark hover:text-brand-gold transition-colors duration-300 group"
@@ -54,7 +54,7 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ language }) => {
                     {posts.map((post, idx) => (
                         <Reveal key={idx} width="100%" delay={idx * 100}>
                             <a
-                                href="https://instagram.com"
+                                href="https://instagram.com/bomboloskg/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="block relative group overflow-hidden aspect-square rounded-lg"

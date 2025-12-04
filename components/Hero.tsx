@@ -51,6 +51,11 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
 
         {/* Main Headline - Specific Greek Text */}
         <div className="flex flex-col items-center mb-10">
+          {/* New Pistacchio Text */}
+          <h3 className="font-serif text-2xl md:text-4xl text-brand-pistachio italic mb-4 animate-fade-in drop-shadow-lg">
+            Pistacchio di Bronte
+          </h3>
+
           <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl text-brand-cream font-medium leading-tight mb-2 drop-shadow-2xl animate-slide-up">
             {language === 'GR' ? 'Βελούδινη Υφή. Κρεμώδες.' : 'Velvety Texture. Creamy.'}
           </h1>

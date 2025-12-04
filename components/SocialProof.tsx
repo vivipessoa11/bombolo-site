@@ -64,6 +64,19 @@ const SocialProof: React.FC<SocialProofProps> = ({ language }) => {
           ))}
         </div>
       </div>
+
+      {/* Leave a Review CTA */}
+      <div className="mt-12 text-center">
+        <a
+          href="https://www.google.com/search?q=Bombolo+Gelato+Thessaloniki+reviews"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-8 py-3 border-2 border-brand-dark text-brand-dark font-bold uppercase tracking-widest text-xs hover:bg-brand-dark hover:text-brand-gold transition-all duration-300 rounded-sm"
+        >
+          <Star size={16} />
+          {language === 'GR' ? 'Γραψτε μια κριτικη' : 'Leave a Review'}
+        </a>
+      </div>
     </div>
   );
 };

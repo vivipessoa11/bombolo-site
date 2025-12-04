@@ -69,7 +69,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
     const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0ASubject: ${formData.subject}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
     const mailtoLink = `mailto:info@bombologelato.com?subject=${encodeURIComponent(subject)}&body=${body}`; // No encodeURIComponent for body to keep newlines working in some clients, but usually better to encode. Let's try simple first or encode properly.
     // Actually, it is safer to encode everything.
-    const safeMailtoLink = `mailto:info@bombologelato.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`)}`;
+    const safeMailtoLink = `mailto:info@bombologelato.com,vilupe2304@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`)}`;
 
     window.location.href = safeMailtoLink;
 

@@ -94,7 +94,7 @@ const Education: React.FC<EducationProps> = ({ language }) => {
                         <img
                            src={pistachioImage}
                            alt="Authentic Bombolo Gelato"
-                           className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000"
+                           className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000 animate-pulse-slow"
                            loading="lazy"
                         />
                         {/* Overlay Badge */}

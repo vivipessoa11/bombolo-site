@@ -367,19 +367,19 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                            <div className="bg-brand-cream/50 rounded-xl p-8 border border-brand-gold/20 mb-16 shadow-inner">
                               <h3 className="font-serif text-3xl text-brand-dark mb-12 text-center border-b border-brand-gold/20 pb-4 inline-block w-full">{t.serviceOptions}</h3>
 
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                              <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-12 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 hide-scrollbar">
                                  {/* Vertical Dividers for Desktop */}
                                  <div className="hidden md:block absolute top-4 bottom-4 left-1/3 w-px bg-brand-dark/10"></div>
                                  <div className="hidden md:block absolute top-4 bottom-4 right-1/3 w-px bg-brand-dark/10"></div>
 
                                  {/* Column 1: Cones */}
-                                 <div className="flex flex-col items-center text-center">
+                                 <div className="flex-none w-[85%] md:w-auto snap-center flex flex-col items-center text-center">
                                     <div className="w-20 h-20 bg-brand-dark text-brand-gold rounded-full flex items-center justify-center mb-6 shadow-xl border-4 border-white">
                                        <IceCream size={36} strokeWidth={1.5} />
                                     </div>
                                     <h4 className="font-bold text-xl mb-3 text-brand-dark uppercase tracking-widest">{t.cones}</h4>
                                     <div className="h-1 w-8 bg-brand-gold rounded-full mb-6"></div>
-                                    <ul className="space-y-4 w-full max-w-xs">
+                                    <ul className="space-y-4 w-full max-w-xs mx-auto">
                                        <li className="flex flex-col items-center p-3 bg-white rounded shadow-sm border border-brand-dark/5">
                                           <span className="font-serif font-bold text-brand-dark text-lg">Gelato Cone</span>
                                           <span className="text-xs text-gray-500 uppercase tracking-wide">1, 2, 3 scoops</span>
@@ -391,14 +391,14 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                                  </div>
 
                                  {/* Column 2: Cups */}
-                                 <div className="flex flex-col items-center text-center">
+                                 <div className="flex-none w-[85%] md:w-auto snap-center flex flex-col items-center text-center">
                                     <div className="w-20 h-20 bg-brand-dark text-brand-gold rounded-full flex items-center justify-center mb-6 shadow-xl border-4 border-white">
                                        <Box size={36} strokeWidth={1.5} />
                                     </div>
                                     <h4 className="font-bold text-xl mb-3 text-brand-dark uppercase tracking-widest">{t.cups}</h4>
                                     <div className="h-1 w-8 bg-brand-gold rounded-full mb-6"></div>
 
-                                    <div className="space-y-3 w-full max-w-xs">
+                                    <div className="space-y-3 w-full max-w-xs mx-auto">
                                        <div className="flex items-center justify-between p-3 bg-white rounded shadow-sm border-l-4 border-brand-dark/20">
                                           <span className="font-serif font-bold text-brand-dark">Small</span>
                                           <span className="text-xs font-bold text-brand-pistachio uppercase">{t.upTo2}</span>
@@ -419,14 +419,14 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                                  </div>
 
                                  {/* Column 3: To Go */}
-                                 <div className="flex flex-col items-center text-center">
+                                 <div className="flex-none w-[85%] md:w-auto snap-center flex flex-col items-center text-center">
                                     <div className="w-20 h-20 bg-brand-dark text-brand-gold rounded-full flex items-center justify-center mb-6 shadow-xl border-4 border-white">
                                        <Box size={36} strokeWidth={1.5} />
                                     </div>
                                     <h4 className="font-bold text-xl mb-3 text-brand-dark uppercase tracking-widest">{t.togo}</h4>
                                     <div className="h-1 w-8 bg-brand-gold rounded-full mb-6"></div>
 
-                                    <div className="grid grid-cols-2 gap-3 w-full max-w-xs mb-4">
+                                    <div className="grid grid-cols-2 gap-3 w-full max-w-xs mx-auto mb-4">
                                        <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">350g</span>
                                        <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">500g</span>
                                        <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">750g</span>

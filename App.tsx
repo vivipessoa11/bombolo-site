@@ -10,6 +10,7 @@ import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import StickySocials from './components/StickySocials';
 import InstagramFeed from './components/InstagramFeed';
+import DeliveryModal from './components/DeliveryModal';
 
 
 export type Language = 'GR' | 'EN';
@@ -17,6 +18,7 @@ export type Language = 'GR' | 'EN';
 export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isDeliveryOpen, setIsDeliveryOpen] = useState(false);
   const [contactSubject, setContactSubject] = useState<string | null>(null);
 
   // Default Language is Greek as requested
@@ -40,19 +42,24 @@ export default function App() {
       <Navbar
         scrolled={scrolled}
         onOpenContact={() => handleOpenContact()}
+        onOpenDelivery={() => setIsDeliveryOpen(true)}
         language={language}
         setLanguage={setLanguage}
       />
       <StickySocials />
 
-
-
-      {/* Contact Modal (Overlay) */}
+      {/* Modals */}
       <ContactForm
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
         language={language}
         initialSubject={contactSubject}
+      />
+
+      <DeliveryModal
+        isOpen={isDeliveryOpen}
+        onClose={() => setIsDeliveryOpen(false)}
+        language={language}
       />
 
       <main className="flex-grow">
