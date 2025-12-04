@@ -10,13 +10,13 @@ interface StoryProps {
 
 const Story: React.FC<StoryProps> = ({ language }) => {
   const t = {
-    subtitle: language === 'GR' ? 'Η Ιστορία του Ιδρυτή' : 'The Founder\'s Story',
-    title: language === 'GR' ? 'Από τον Κόσμο στη Θεσσαλονίκη' : 'From The World to Thessaloniki',
+    subtitle: language === 'GR' ? 'Sweet, Cool & Divine Creations' : 'The Founder\'s Story',
+    title: language === 'GR' ? 'A Journey in the World of Taste' : 'From The World to Thessaloniki',
     p1: language === 'GR'
-      ? 'Το Bombolo είναι το αποτέλεσμα μιας ζωής εξερεύνησης. Ο ιδρυτής μας, ένας πραγματικός πολίτης του κόσμου, ταξίδεψε εκτενώς στην Εμίλια-Ρομάνια και τη Σικελία, ξεκλειδώνοντας τα πανάρχαια μυστικά των Ιταλών "μαέστρων".'
+      ? 'Το Gelato και όλα τα προϊόντα BOMBOLO παράγονται καθημερινά στον χώρο μας από τα πιο αγνά και υψηλής ποιότητας υλικά με μεγάλη φροντίδα και αγάπη με σκοπό και στόχο το ταξίδι στον μαγικό κόσμο της γεύσης!!!'
       : 'Bombolo is the culmination of a life spent exploring. Our founder, a true citizen of the world, traveled extensively through Emilia–Romagna and Sicily, unlocking the age-old secrets of the Italian "maestros."',
     p2: language === 'GR'
-      ? 'Έφερε αυτή τη γνώση πίσω στη Θεσσαλονίκη, τη γαστρονομική πρωτεύουσα της Ελλάδας. Εδώ, ενώνουμε παραδοσιακές ιταλικές τεχνικές με μια αδιάκοπη εμμονή για ποιότητα.'
+      ? 'Με το μοναδικό του Ιταλικό Gelato και τα αρώματα του καφέ του θα περπατήσεις στα σοκάκια της Νάπολης, του Παλέρμο και στα ομορφότερα χωριά της Τοσκάνης και της Λομβαρδίας. Η βάφλα του θα σε πάει βόλτα στην Λιέγη και στα κανάλια του Μπρίζ ενώ οι γαλλικές του σοκολάτες στα ρομαντικότερα δρομάκια του Παρισιού και των Βρυξελών.'
       : 'He brought this knowledge back to Thessaloniki, the gastronomic capital of Greece. Here, we fuse traditional Italian techniques with a relentless obsession for quality.',
     sourceTitle: language === 'GR' ? 'Πρώτες Ύλες' : 'Premium Sourcing',
     sourceDesc: language === 'GR' ? 'Προμηθευόμαστε αυστηρά από τις καλύτερες περιοχές: Φιστίκια από το Bronte, Φουντούκια από το Πιεμόντε και Κακάο από την Κολομβία.' : 'We source strictly from the best regions: Pistachios from Bronte, Hazelnuts from Piedmont, and Cacao from Colombia.',
@@ -72,7 +72,7 @@ const Story: React.FC<StoryProps> = ({ language }) => {
             </Reveal>
 
             {/* Ingredient Highlights */}
-            <div className="space-y-6 pt-4 border-t border-brand-dark/10">
+            <div className="flex flex-col space-y-6 md:space-y-6 pt-4 border-t border-brand-dark/10 md:block hidden">
               <Reveal width="100%" delay={300}>
                 <div className="flex items-start gap-4">
                   <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
@@ -108,6 +108,45 @@ const Story: React.FC<StoryProps> = ({ language }) => {
                   </div>
                 </div>
               </Reveal>
+            </div>
+
+            {/* Mobile Carousel Version */}
+            <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pt-4 border-t border-brand-dark/10 pb-4 hide-scrollbar -mx-6 px-6">
+              <div className="min-w-[280px] snap-center bg-white/50 p-4 rounded-lg border border-brand-dark/5">
+                <div className="flex items-start gap-3">
+                  <div className="bg-brand-dark text-brand-gold p-2 rounded-full shrink-0">
+                    <Globe2 size={20} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-lg text-brand-dark font-bold mb-1">{t.sourceTitle}</h4>
+                    <p className="text-brand-dark/70 text-sm leading-relaxed">{t.sourceDesc}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="min-w-[280px] snap-center bg-white/50 p-4 rounded-lg border border-brand-dark/5">
+                <div className="flex items-start gap-3">
+                  <div className="bg-brand-dark text-brand-gold p-2 rounded-full shrink-0">
+                    <ChefHat size={20} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-lg text-brand-dark font-bold mb-1">{t.prepTitle}</h4>
+                    <p className="text-brand-dark/70 text-sm leading-relaxed">{t.prepDesc}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="min-w-[280px] snap-center bg-white/50 p-4 rounded-lg border border-brand-dark/5">
+                <div className="flex items-start gap-3">
+                  <div className="bg-brand-dark text-brand-gold p-2 rounded-full shrink-0">
+                    <Droplet size={20} strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-lg text-brand-dark font-bold mb-1">{t.pureTitle}</h4>
+                    <p className="text-brand-dark/70 text-sm leading-relaxed">{t.pureDesc}</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

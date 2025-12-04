@@ -10,9 +10,9 @@ interface EducationProps {
 
 const Education: React.FC<EducationProps> = ({ language }) => {
    const t = {
-      title: language === 'GR' ? 'BOMBOLO: Η ΟΥΣΙΑ ΤΗΣ ΠΟΙΟΤΗΤΑΣ' : 'BOMBOLO: THE ESSENCE OF QUALITY',
+      title: language === 'GR' ? 'GELATO' : 'BOMBOLO: THE ESSENCE OF QUALITY',
       subtitle: language === 'GR'
-         ? 'Το Gelato δεν είναι απλώς παγωτό. Είναι μια εμπειρία γεύσης, υφής και θερμοκρασίας.'
+         ? 'Μοναδικό Χειροποίητο Ιταλικό Gelato Bombolo το οποίο παράγουμε καθημερινά στο κατάστημα από φρέσκο γάλα και υψηλής ποιότητας Ιταλικές πρώτες ύλες με μοναδική κρεμώδη υφή και λίγα λιπαρά όπως ακριβώς πρέπει να είναι το ΑΥΘΕΝΤΙΚΟ και ΠΟΙΟΤΙΚΟ ΙΤΑΛΙΚΟ GELATO !!! Ολόφρεσκο, Χωρίς σκόνες, συντηρητικά και χρωστικές ουσίες. Φτιαγμένο με τα αγνότερα υλικά, ολόφρεσκα φρούτα και τις καλύτερες Ιταλικές συνταγές. Γεύσεις απίστευτες που τις δημιούργησε η γνώση και η αγάπη για το Gelato και που η κάθε μια από αυτές έχει την δική της ταυτότητα !!!'
          : 'Gelato is not just ice cream. It is an experience of taste, texture, and temperature.',
       cards: [
          {
@@ -64,13 +64,23 @@ const Education: React.FC<EducationProps> = ({ language }) => {
                </Reveal>
             </div>
 
+            {/* Comparison Header */}
+            <div className="text-center mb-8 md:mb-12">
+               <span className="inline-block py-1 px-3 rounded-full bg-brand-pistachio/10 text-brand-pistachio font-bold text-xs tracking-widest uppercase mb-2">
+                  {language === 'GR' ? 'Η Διαφορά' : 'The Difference'}
+               </span>
+               <h3 className="font-serif text-2xl md:text-3xl text-brand-dark">
+                  Gelato vs Ice Cream
+               </h3>
+            </div>
+
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
-               {/* Cards Grid */}
+               {/* Cards Grid / Carousel */}
                <div className="lg:w-1/2 w-full">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex md:grid md:grid-cols-2 gap-6 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
                      {t.cards.map((card, idx) => (
-                        <Reveal key={idx} width="100%" delay={idx * 150}>
+                        <Reveal key={idx} width="100%" delay={idx * 150} className="min-w-[280px] md:min-w-0 snap-center h-full">
                            <div className="bg-white p-8 rounded-xl shadow-sm border border-brand-gold/20 hover:shadow-md transition-shadow duration-300 h-full flex flex-col items-start group">
                               <div className="p-3 bg-brand-cream rounded-full text-brand-dark mb-4 group-hover:bg-brand-gold group-hover:text-white transition-colors">
                                  <card.icon size={24} strokeWidth={1.5} />

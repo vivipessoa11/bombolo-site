@@ -57,9 +57,9 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
       upTo4: language === 'GR' ? 'έως 4 γεύσεις' : 'Up to 4 flavors',
 
       // Waffle Section
-      heritage: language === 'GR' ? 'Βελγική Κληρονομιά' : 'Belgian Heritage',
-      grandma: language === 'GR' ? 'Συνταγή της Γιαγιάς' : 'Grandma\'s Recipe',
-      grandmaDesc: language === 'GR' ? '"Οι βάφλες μας φτιάχνονται με αυθεντική βελγική συνταγή. Τραγανές απέξω, απίστευτα αφράτες από μέσα."' : '"Our waffles are made using an authentic Belgian recipe. Crunchy on the outside, impossibly fluffy on the inside."',
+      heritage: language === 'GR' ? 'HOME MADE BELGIAN WAFFLE' : 'Belgian Heritage',
+      grandma: language === 'GR' ? 'Η Συνταγή' : 'Grandma\'s Recipe',
+      grandmaDesc: language === 'GR' ? '"Η κυρία Claudine από την Λιέγη, αφού βεβαιώθηκε πως θα σεβαστούμε την παραδοσιακή μυστική της συνταγή που είχε κληρονομήσει από την μαμά της Mercotte για την πιο τραγανή, αφράτη, ευωδιαστή και νόστιμη Βέλγικη βάφλα μας την εμπιστεύτηκε !!! Εμείς απλά προσθέτουμε στο μυστικό της, φρέσκο γάλα, βούτυρο, αυγά, τις νοστιμότερες Βελγικές πραλίνες και Γαλλικές σοκολάτες την αγάπη μας και την φροντίδα για να δικαιώσουμε την κυρία Claudine και να έχουμε το τελειότερο αποτέλεσμα!!!"' : '"Our waffles are made using an authentic Belgian recipe. Crunchy on the outside, impossibly fluffy on the inside."',
       create: language === 'GR' ? 'Φτιάξτε τη Βάφλα σας' : 'Create Your Waffle',
       base: language === 'GR' ? 'Η Βάση' : 'The Base',
       baseDesc: language === 'GR' ? 'Αυθεντική Βελγική Βάφλα με πλούσια Πραλίνα.' : 'Authentic Belgian Waffle with rich Praline.',
@@ -256,112 +256,122 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
 
                         <div className="p-6 md:p-12">
 
-                           {/* FLAVOR EXPLORER (New Design) */}
+                           {/* FLAVOR EXPLORER (Refactored to Modals) */}
                            <div className="mb-16">
                               <div className="text-center mb-8">
                                  <h3 className="font-serif text-3xl text-brand-dark mb-2">{t.flavorsTitle}</h3>
                                  <p className="text-gray-500 text-sm uppercase tracking-widest">{t.exploreFlavors}</p>
                               </div>
 
-                              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                                 {/* Crema Category */}
-                                 <div className="flex flex-col">
-                                    <button
-                                       onClick={() => toggleFlavorCategory('crema')}
-                                       className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${activeFlavorCategory === 'crema' ? 'bg-brand-dark text-brand-gold shadow-lg' : 'bg-brand-cream/50 text-brand-dark hover:bg-brand-cream'}`}
-                                    >
-                                       <span className="font-bold font-serif text-lg">{t.catCrema}</span>
-                                       <ChevronDown size={20} className={`transition-transform duration-300 ${activeFlavorCategory === 'crema' ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFlavorCategory === 'crema' ? 'max-h-[1000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                       <ul className="space-y-2 p-2">
-                                          {flavorData.crema.map((f, idx) => (
-                                             <li key={idx} className="bg-white p-3 rounded border-l-4 border-brand-gold shadow-sm">
-                                                <span className="font-bold text-brand-dark block text-sm">{f.name}</span>
-                                                <span className="text-xs text-gray-500 block mt-1">{f.desc}</span>
-                                             </li>
-                                          ))}
-                                       </ul>
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                 {/* Crema Button */}
+                                 <button
+                                    onClick={() => setActiveFlavorCategory('crema')}
+                                    className="p-6 rounded-xl bg-white border border-brand-dark/10 shadow-sm hover:shadow-md hover:border-brand-gold transition-all duration-300 flex flex-col items-center gap-3 group"
+                                 >
+                                    <div className="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center text-brand-dark group-hover:bg-brand-dark group-hover:text-brand-gold transition-colors">
+                                       <IceCream size={24} />
                                     </div>
-                                 </div>
+                                    <span className="font-serif font-bold text-lg text-brand-dark">{t.catCrema}</span>
+                                 </button>
 
-                                 {/* Chocolate Category */}
-                                 <div className="flex flex-col">
-                                    <button
-                                       onClick={() => toggleFlavorCategory('chocolate')}
-                                       className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${activeFlavorCategory === 'chocolate' ? 'bg-brand-dark text-brand-gold shadow-lg' : 'bg-brand-cream/50 text-brand-dark hover:bg-brand-cream'}`}
-                                    >
-                                       <span className="font-bold font-serif text-lg">{t.catChoco}</span>
-                                       <ChevronDown size={20} className={`transition-transform duration-300 ${activeFlavorCategory === 'chocolate' ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFlavorCategory === 'chocolate' ? 'max-h-[1000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                       <ul className="space-y-2 p-2">
-                                          {flavorData.chocolate.map((f, idx) => (
-                                             <li key={idx} className="bg-white p-3 rounded border-l-4 border-brand-dark shadow-sm">
-                                                <span className="font-bold text-brand-dark block text-sm">{f.name}</span>
-                                                <span className="text-xs text-gray-500 block mt-1">{f.desc}</span>
-                                             </li>
-                                          ))}
-                                       </ul>
+                                 {/* Chocolate Button */}
+                                 <button
+                                    onClick={() => setActiveFlavorCategory('chocolate')}
+                                    className="p-6 rounded-xl bg-white border border-brand-dark/10 shadow-sm hover:shadow-md hover:border-brand-gold transition-all duration-300 flex flex-col items-center gap-3 group"
+                                 >
+                                    <div className="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center text-brand-dark group-hover:bg-brand-dark group-hover:text-brand-gold transition-colors">
+                                       <Heart size={24} />
                                     </div>
-                                 </div>
+                                    <span className="font-serif font-bold text-lg text-brand-dark">{t.catChoco}</span>
+                                 </button>
 
-                                 {/* Sorbet Category */}
-                                 <div className="flex flex-col">
-                                    <button
-                                       onClick={() => toggleFlavorCategory('sorbet')}
-                                       className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${activeFlavorCategory === 'sorbet' ? 'bg-brand-dark text-brand-gold shadow-lg' : 'bg-brand-cream/50 text-brand-dark hover:bg-brand-cream'}`}
-                                    >
-                                       <span className="font-bold font-serif text-lg">{t.catSorbet}</span>
-                                       <ChevronDown size={20} className={`transition-transform duration-300 ${activeFlavorCategory === 'sorbet' ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFlavorCategory === 'sorbet' ? 'max-h-[1000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
-                                       <ul className="space-y-2 p-2">
-                                          {flavorData.sorbet.map((f, idx) => (
-                                             <li key={idx} className="bg-white p-3 rounded border-l-4 border-brand-pistachio shadow-sm">
-                                                <span className="font-bold text-brand-dark block text-sm">{f.name}</span>
-                                                <span className="text-xs text-gray-500 block mt-1">{f.desc}</span>
-                                             </li>
-                                          ))}
-                                       </ul>
+                                 {/* Sorbet Button */}
+                                 <button
+                                    onClick={() => setActiveFlavorCategory('sorbet')}
+                                    className="p-6 rounded-xl bg-white border border-brand-dark/10 shadow-sm hover:shadow-md hover:border-brand-gold transition-all duration-300 flex flex-col items-center gap-3 group"
+                                 >
+                                    <div className="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center text-brand-dark group-hover:bg-brand-dark group-hover:text-brand-gold transition-colors">
+                                       <Droplet size={24} />
                                     </div>
-                                 </div>
+                                    <span className="font-serif font-bold text-lg text-brand-dark">{t.catSorbet}</span>
+                                 </button>
 
-                                 {/* No Sugar Category */}
-                                 <div className="flex flex-col relative">
-                                    <button
-                                       onClick={() => toggleFlavorCategory('nosugar')}
-                                       className={`p-4 rounded-lg flex items-center justify-between transition-all duration-300 ${activeFlavorCategory === 'nosugar' ? 'bg-brand-dark text-brand-gold shadow-lg' : 'bg-brand-cream/50 text-brand-dark hover:bg-brand-cream'}`}
-                                    >
-                                       <span className="font-bold font-serif text-lg">{t.catNoSugar}</span>
-                                       <ChevronDown size={20} className={`transition-transform duration-300 ${activeFlavorCategory === 'nosugar' ? 'rotate-180' : ''}`} />
-                                    </button>
-                                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeFlavorCategory === 'nosugar' ? 'max-h-[1000px] opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                                 {/* No Sugar Button */}
+                                 <button
+                                    onClick={() => setActiveFlavorCategory('nosugar')}
+                                    className="p-6 rounded-xl bg-white border border-brand-dark/10 shadow-sm hover:shadow-md hover:border-brand-gold transition-all duration-300 flex flex-col items-center gap-3 group"
+                                 >
+                                    <div className="w-12 h-12 rounded-full bg-brand-cream flex items-center justify-center text-brand-dark group-hover:bg-brand-dark group-hover:text-brand-gold transition-colors">
+                                       <Sparkles size={24} />
+                                    </div>
+                                    <span className="font-serif font-bold text-lg text-brand-dark">{t.catNoSugar}</span>
+                                 </button>
+                              </div>
+                           </div>
 
-                                       {/* Tagline & Info Icon */}
-                                       <div className="flex items-center justify-between mb-3 bg-brand-cream/50 p-3 rounded-lg border border-brand-gold/20">
-                                          <p className="font-serif text-brand-dark italic text-sm leading-tight">«Ίδια γεύση Bombolo, χωρίς προσθήκη ζάχαρης.»</p>
-                                          <button
-                                             onClick={(e) => { e.stopPropagation(); setShowNoSugarInfo(true); }}
-                                             className="text-brand-dark hover:text-brand-gold transition-colors p-1"
-                                             aria-label="Info"
-                                          >
-                                             <Info size={20} />
-                                          </button>
+                           {/* FLAVOR MODAL */}
+                           {activeFlavorCategory && (
+                              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={() => setActiveFlavorCategory(null)}>
+                                 <div
+                                    className="bg-white w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl relative animate-scale-in"
+                                    onClick={(e) => e.stopPropagation()}
+                                 >
+                                    {/* Modal Header */}
+                                    <div className="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-10">
+                                       <div>
+                                          <h3 className="font-serif text-2xl md:text-3xl text-brand-dark">
+                                             {activeFlavorCategory === 'crema' && t.catCrema}
+                                             {activeFlavorCategory === 'chocolate' && t.catChoco}
+                                             {activeFlavorCategory === 'sorbet' && t.catSorbet}
+                                             {activeFlavorCategory === 'nosugar' && t.catNoSugar}
+                                          </h3>
+                                          {activeFlavorCategory === 'nosugar' && (
+                                             <p className="text-xs text-brand-pistachio font-bold uppercase tracking-wider mt-1">Sugar Free</p>
+                                          )}
                                        </div>
+                                       <button
+                                          onClick={() => setActiveFlavorCategory(null)}
+                                          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                                       >
+                                          <X size={24} className="text-gray-500" />
+                                       </button>
+                                    </div>
 
-                                       <ul className="space-y-2 p-2">
-                                          {flavorData.nosugar.map((f, idx) => (
-                                             <li key={idx} className="bg-white p-3 rounded border-l-4 border-gray-400 shadow-sm">
-                                                <span className="font-bold text-brand-dark block text-sm">{f.name}</span>
-                                                <span className="text-xs text-gray-500 block mt-1">{f.desc}</span>
-                                             </li>
+                                    {/* Modal Content */}
+                                    <div className="p-6">
+                                       {activeFlavorCategory === 'nosugar' && (
+                                          <div className="mb-6 bg-brand-cream/50 p-4 rounded-lg border border-brand-gold/20 flex gap-3">
+                                             <Info className="text-brand-dark shrink-0" size={20} />
+                                             <p className="text-sm text-gray-700 italic">
+                                                «Ίδια γεύση Bombolo, χωρίς προσθήκη ζάχαρης.» <br />
+                                                <span className="text-xs not-italic text-gray-500 mt-1 block">Γλυκαίνεται με μαλτιτόλη & σορβιτόλη.</span>
+                                             </p>
+                                          </div>
+                                       )}
+
+                                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                          {flavorData[activeFlavorCategory].map((f, idx) => (
+                                             <div key={idx} className="bg-gray-50 p-4 rounded-lg border border-gray-100 hover:border-brand-gold/30 transition-colors">
+                                                <h4 className="font-bold text-brand-dark text-lg mb-1">{f.name}</h4>
+                                                <p className="text-sm text-gray-600 leading-relaxed">{f.desc}</p>
+                                             </div>
                                           ))}
-                                       </ul>
+                                       </div>
+                                    </div>
+
+                                    {/* Modal Footer */}
+                                    <div className="p-4 border-t border-gray-100 bg-gray-50 text-center">
+                                       <button
+                                          onClick={() => setActiveFlavorCategory(null)}
+                                          className="text-sm font-bold text-brand-dark uppercase tracking-widest hover:text-brand-gold transition-colors"
+                                       >
+                                          Close Menu
+                                       </button>
                                     </div>
                                  </div>
                               </div>
-                           </div>
+                           )}
 
                            {/* Section A: Service Options (INFOGRAPHIC STYLE) */}
                            <div className="bg-brand-cream/50 rounded-xl p-8 border border-brand-gold/20 mb-16 shadow-inner">
@@ -502,6 +512,11 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                               <div>
                                  <h3 className="font-serif text-4xl text-brand-dark">{t.coffeeColl}</h3>
                                  <p className="text-brand-gold uppercase tracking-widest text-sm mt-2">Strictly Classic</p>
+                                 {language === 'GR' && (
+                                    <p className="text-gray-600 mt-4 max-w-2xl text-sm leading-relaxed">
+                                       Οι καλύτερες ποικιλίες καφέ των Κολομβιανών Άνδεων και του Espirito Santo της Βραζιλίας επιλέχθηκαν με τεράστια προσοχή και καβουρντίστηκαν με μεγάλη φροντίδα αλλά και γνώση από τους μεγαλύτερους γνώστες του καφέ για να δημιουργηθεί το πιο ευωδιαστό και νοστιμότερο Ιταλικό blend. Εμείς στο BOMBOLO φροντίζουμε να τον παρασκευάσουμε με τον «Ιταλικότερο» τρόπο για να σας ταξιδέψουμε στην Fontana di Trevi και στην Piazza San Marco…….
+                                    </p>
+                                 )}
                               </div>
                               <div className="bg-brand-dark text-brand-gold px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest shadow-lg flex items-center gap-2">
                                  <IceCream size={16} /> {t.tip}
