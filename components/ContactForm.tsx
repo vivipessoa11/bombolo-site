@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Check, X } from 'lucide-react';
+import { Send, Check, X, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { Language } from '../App';
+
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -18,6 +20,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const t = {
     getIntouch: language === 'GR' ? 'Επικοινωνηστε' : 'Get in Touch',
@@ -61,24 +65,44 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
-    // Construct mailto link
-    const subject = `New Contact Form Submission: ${formData.subject}`;
-    const body = `Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0APhone: ${formData.phone}%0D%0ASubject: ${formData.subject}%0D%0A%0D%0AMessage:%0D%0A${formData.message}`;
-    const mailtoLink = `mailto:info@bombologelato.com?subject=${encodeURIComponent(subject)}&body=${body}`; // No encodeURIComponent for body to keep newlines working in some clients, but usually better to encode. Let's try simple first or encode properly.
-    // Actually, it is safer to encode everything.
-    const safeMailtoLink = `mailto:info@bombologelato.com,vilupe2304@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject}\n\nMessage:\n${formData.message}`)}`;
+    try {
+      if (!import.meta.env.VITE_EMAILJS_SERVICE_ID || !import.meta.env.VITE_EMAILJS_TEMPLATE_ID || !import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
+        throw new Error("EmailJS service not configured");
+      }
 
-    window.location.href = safeMailtoLink;
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
 
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
+      setIsSubmitted(true);
       setFormData({ name: '', email: '', phone: '', subject: subjects[3], message: '' });
-      onClose();
-    }, 5000); // Increased timeout to let them read the longer message
+
+      // Close after delay
+      setTimeout(() => {
+        setIsSubmitted(false);
+        onClose();
+      }, 5000);
+
+    } catch (err) {
+      console.error('EmailJS Error:', err);
+      setError('Failed to send message. Please try again later or contact us directly at info@bombologelato.com');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -208,9 +232,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
               <div className="flex justify-end pt-4">
                 <button
                   type="submit"
-                  className="px-8 py-3 bg-brand-dark text-white font-bold tracking-widest uppercase hover:bg-brand-gold transition-colors text-sm"
+                  disabled={isLoading}
+                  className="px-8 py-3 bg-brand-dark text-white font-bold tracking-widest uppercase hover:bg-brand-gold transition-colors text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
-                  {t.send}
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      Wait...
+                    </>
+                  ) : (
+                    t.send
+                  )}
                 </button>
               </div>
             </form>
