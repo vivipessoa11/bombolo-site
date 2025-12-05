@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IceCream, Coffee, Cake, UtensilsCrossed, Star, Box, Snowflake, Flame, Cloud, Heart, Droplet, ChevronDown, Info, X } from 'lucide-react';
+import { IceCream, Coffee, Cake, UtensilsCrossed, Star, Box, Snowflake, Flame, Cloud, Heart, Droplet, ChevronDown, Info, X, Sparkles } from 'lucide-react';
 import { Language } from '../App';
 import { Reveal } from './Reveal';
 import caffeAffogato from '../src/assets/CAFFE AFFOGATO.JPG';
@@ -57,8 +57,8 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
       upTo4: language === 'GR' ? 'έως 4 γεύσεις' : 'Up to 4 flavors',
 
       // Waffle Section
-      heritage: language === 'GR' ? 'HOME MADE BELGIAN WAFFLE' : 'Belgian Heritage',
-      grandma: language === 'GR' ? 'Η Συνταγή' : 'Grandma\'s Recipe',
+      heritage: language === 'GR' ? 'Βελγική Κληρονομιά' : 'Belgian Heritage',
+      grandma: language === 'GR' ? 'Συνταγή της Γιαγιάς' : 'Grandma\'s Recipe',
       grandmaDesc: language === 'GR' ? '"Η κυρία Claudine από την Λιέγη, αφού βεβαιώθηκε πως θα σεβαστούμε την παραδοσιακή μυστική της συνταγή που είχε κληρονομήσει από την μαμά της Mercotte για την πιο τραγανή, αφράτη, ευωδιαστή και νόστιμη Βέλγικη βάφλα μας την εμπιστεύτηκε !!! Εμείς απλά προσθέτουμε στο μυστικό της, φρέσκο γάλα, βούτυρο, αυγά, τις νοστιμότερες Βελγικές πραλίνες και Γαλλικές σοκολάτες την αγάπη μας και την φροντίδα για να δικαιώσουμε την κυρία Claudine και να έχουμε το τελειότερο αποτέλεσμα!!!"' : '"Our waffles are made using an authentic Belgian recipe. Crunchy on the outside, impossibly fluffy on the inside."',
       create: language === 'GR' ? 'Φτιάξτε τη Βάφλα σας' : 'Create Your Waffle',
       base: language === 'GR' ? 'Η Βάση' : 'The Base',
@@ -500,164 +500,368 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                                  </div>
                               </div>
                            </div>
-                        </div>
+                           <span className="font-serif font-bold text-lg text-brand-dark">{t.catNoSugar}</span>
+                        </button>
                      </div>
-                  )}
-
-                  {/* ================= COFFEE CONTENT ================= */}
-                  {activeCategory === 'coffee' && (
-                     <div className="p-8 md:p-16 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-                        <div className="max-w-5xl mx-auto">
-                           <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
-                              <div>
-                                 <h3 className="font-serif text-4xl text-brand-dark">{t.coffeeColl}</h3>
-                                 <p className="text-brand-gold uppercase tracking-widest text-sm mt-2">Strictly Classic</p>
-                                 {language === 'GR' && (
-                                    <p className="text-gray-600 mt-4 max-w-2xl text-sm leading-relaxed">
-                                       Οι καλύτερες ποικιλίες καφέ των Κολομβιανών Άνδεων και του Espirito Santo της Βραζιλίας επιλέχθηκαν με τεράστια προσοχή και καβουρντίστηκαν με μεγάλη φροντίδα αλλά και γνώση από τους μεγαλύτερους γνώστες του καφέ για να δημιουργηθεί το πιο ευωδιαστό και νοστιμότερο Ιταλικό blend. Εμείς στο BOMBOLO φροντίζουμε να τον παρασκευάσουμε με τον «Ιταλικότερο» τρόπο για να σας ταξιδέψουμε στην Fontana di Trevi και στην Piazza San Marco…….
-                                    </p>
-                                 )}
-                              </div>
-                              <div className="bg-brand-dark text-brand-gold px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest shadow-lg flex items-center gap-2">
-                                 <IceCream size={16} /> {t.tip}
-                              </div>
                            </div>
 
-                           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                              {coffees.map((c, idx) => (
-                                 <div key={idx} className="group bg-white/50 hover:bg-white p-6 rounded-lg transition-all duration-300 border border-transparent hover:border-brand-gold/30 hover:shadow-lg">
-                                    <div className="flex items-center gap-4 mb-3">
-                                       <div className="p-3 bg-brand-dark/5 rounded-full text-brand-dark group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
-                                          <c.icon size={24} strokeWidth={1.5} />
-                                       </div>
-                                       <h4 className="font-serif text-xl font-bold text-brand-dark group-hover:text-brand-gold transition-colors">{c.name}</h4>
-                                    </div>
-                                    <div className="h-px w-12 bg-brand-gold/50 mb-3"></div>
-                                    <p className="text-gray-600 text-sm leading-relaxed">{c.desc}</p>
+               {/* FLAVOR MODAL */}
+               {activeFlavorCategory && (
+                  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={() => setActiveFlavorCategory(null)}>
+                     <div
+                        className="bg-white w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl relative animate-scale-in"
+                        onClick={(e) => e.stopPropagation()}
+                     >
+                        {/* Modal Header */}
+                        <div className="sticky top-0 bg-white border-b border-gray-100 p-6 flex justify-between items-center z-10">
+                           <div>
+                              <h3 className="font-serif text-2xl md:text-3xl text-brand-dark">
+                                 {activeFlavorCategory === 'crema' && t.catCrema}
+                                 {activeFlavorCategory === 'chocolate' && t.catChoco}
+                                 {activeFlavorCategory === 'sorbet' && t.catSorbet}
+                                 {activeFlavorCategory === 'nosugar' && t.catNoSugar}
+                              </h3>
+                              {activeFlavorCategory === 'nosugar' && (
+                                 <p className="text-xs text-brand-pistachio font-bold uppercase tracking-wider mt-1">Sugar Free</p>
+                              )}
+                           </div>
+                           <button
+                              onClick={() => setActiveFlavorCategory(null)}
+                              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                           >
+                              <X size={24} className="text-gray-500" />
+                           </button>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="p-6">
+                           {activeFlavorCategory === 'nosugar' && (
+                              <div className="mb-6 bg-brand-cream/50 p-4 rounded-lg border border-brand-gold/20 flex gap-3">
+                                 <Info className="text-brand-dark shrink-0" size={20} />
+                                 <p className="text-sm text-gray-700 italic">
+                                    «Ίδια γεύση Bombolo, χωρίς προσθήκη ζάχαρης.» <br />
+                                    <span className="text-xs not-italic text-gray-500 mt-1 block">Γλυκαίνεται με μαλτιτόλη & σορβιτόλη.</span>
+                                 </p>
+                              </div>
+                           )}
+
+                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              {flavorData[activeFlavorCategory].map((f, idx) => (
+                                 <div key={idx} className="bg-gray-50 p-4 rounded-lg border border-gray-100 hover:border-brand-gold/30 transition-colors">
+                                    <h4 className="font-bold text-brand-dark text-lg mb-1">{f.name}</h4>
+                                    <p className="text-sm text-gray-600 leading-relaxed">{f.desc}</p>
                                  </div>
                               ))}
                            </div>
                         </div>
-                     </div>
-                  )}
 
-                  {/* ================= SWEETS CONTENT ================= */}
-                  {activeCategory === 'sweets' && (
-                     <div className="p-8 md:p-12">
-                        <div className="text-center mb-12">
-                           <h3 className="font-serif text-4xl text-brand-dark">{t.desserts}</h3>
-                           <p className="text-gray-500 mt-2">Classic desserts.</p>
+                        {/* Modal Footer */}
+                        <div className="p-4 border-t border-gray-100 bg-gray-50 text-center">
+                           <button
+                              onClick={() => setActiveFlavorCategory(null)}
+                              className="text-sm font-bold text-brand-dark uppercase tracking-widest hover:text-brand-gold transition-colors"
+                           >
+                              Close Menu
+                           </button>
                         </div>
+                     </div>
+                  </div>
+               )}
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                           {/* Card 1 */}
-                           <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
-                              <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                                 <Star size={24} fill="currentColor" />
-                              </div>
-                              <div>
-                                 <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Profiterole</h4>
-                                 <p className="text-gray-600 leading-relaxed text-sm">
-                                    {language === 'GR'
-                                       ? 'Αφράτα σου γεμιστά με πλούσια κρέμα (ή παγωτό), σερβιρισμένα με απαλή σάλτσα από εκλεκτή σοκολάτα Λατινικής Αμερικής.'
-                                       : 'Airy choux pastry filled with rich cream (or gelato), served with a smooth sauce made from fine chocolate from Latin America.'}
-                                 </p>
-                              </div>
+               {/* Section A: Service Options (INFOGRAPHIC STYLE) */}
+               <div className="bg-brand-cream/50 rounded-xl p-8 border border-brand-gold/20 mb-16 shadow-inner">
+                  <h3 className="font-serif text-3xl text-brand-dark mb-12 text-center border-b border-brand-gold/20 pb-4 inline-block w-full">{t.serviceOptions}</h3>
+
+                  <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-12 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 hide-scrollbar">
+                     {/* Vertical Dividers for Desktop */}
+                     <div className="hidden md:block absolute top-4 bottom-4 left-1/3 w-px bg-brand-dark/10"></div>
+                     <div className="hidden md:block absolute top-4 bottom-4 right-1/3 w-px bg-brand-dark/10"></div>
+
+                     {/* Column 1: Cones */}
+                     <div className="flex-none w-[85%] md:w-auto snap-center flex flex-col items-center text-center">
+                        <div className="w-20 h-20 bg-brand-dark text-brand-gold rounded-full flex items-center justify-center mb-6 shadow-xl border-4 border-white">
+                           <IceCream size={36} strokeWidth={1.5} />
+                        </div>
+                        <h4 className="font-bold text-xl mb-3 text-brand-dark uppercase tracking-widest">{t.cones}</h4>
+                        <div className="h-1 w-8 bg-brand-gold rounded-full mb-6"></div>
+                        <ul className="space-y-4 w-full max-w-xs mx-auto">
+                           <li className="flex flex-col items-center p-3 bg-white rounded shadow-sm border border-brand-dark/5">
+                              <span className="font-serif font-bold text-brand-dark text-lg">Gelato Cone</span>
+                              <span className="text-xs text-gray-500 uppercase tracking-wide">1, 2, 3 scoops</span>
+                           </li>
+                           <li className="flex flex-col items-center p-3 bg-white rounded shadow-sm border border-brand-pistachio/20">
+                              <span className="font-serif font-bold text-brand-pistachio text-lg">Special Cone</span>
+                           </li>
+                        </ul>
+                     </div>
+
+                     {/* Column 2: Cups */}
+                     <div className="flex-none w-[85%] md:w-auto snap-center flex flex-col items-center text-center">
+                        <div className="w-20 h-20 bg-brand-dark text-brand-gold rounded-full flex items-center justify-center mb-6 shadow-xl border-4 border-white">
+                           <Box size={36} strokeWidth={1.5} />
+                        </div>
+                        <h4 className="font-bold text-xl mb-3 text-brand-dark uppercase tracking-widest">{t.cups}</h4>
+                        <div className="h-1 w-8 bg-brand-gold rounded-full mb-6"></div>
+
+                        <div className="space-y-3 w-full max-w-xs mx-auto">
+                           <div className="flex items-center justify-between p-3 bg-white rounded shadow-sm border-l-4 border-brand-dark/20">
+                              <span className="font-serif font-bold text-brand-dark">Small</span>
+                              <span className="text-xs font-bold text-brand-pistachio uppercase">{t.upTo2}</span>
                            </div>
-
-                           {/* Card 2 */}
-                           <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
-                              <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                                 <Star size={24} fill="currentColor" />
-                              </div>
-                              <div>
-                                 <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Gelato Chicago</h4>
-                                 <p className="text-gray-600 leading-relaxed text-sm">
-                                    {language === 'GR'
-                                       ? 'Σοκολάτα gelato με έντονη γεύση, συνοδευόμενη από σάλτσα προφιτερόλ και σαντιγί.'
-                                       : 'Chocolate gelato with intense flavor, accompanied by profiterole sauce and finished with whipped cream.'}
-                                 </p>
-                              </div>
+                           <div className="flex items-center justify-between p-3 bg-white rounded shadow-sm border-l-4 border-brand-dark/40">
+                              <span className="font-serif font-bold text-brand-dark">Medium</span>
+                              <span className="text-xs font-bold text-brand-pistachio uppercase">{t.upTo3}</span>
                            </div>
-
-                           {/* Card 3 */}
-                           <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
-                              <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                                 <Cake size={24} />
-                              </div>
-                              <div>
-                                 <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Tiramisu</h4>
-                                 <p className="text-gray-600 leading-relaxed text-sm">
-                                    {language === 'GR'
-                                       ? 'Φρέσκο τιραμισού με πλούσιο μασκαρπόνε και λικέρ αμαρέτο.'
-                                       : 'Fresh tiramisu with rich mascarpone and amaretto liqueur.'}
-                                 </p>
-                              </div>
+                           <div className="flex items-center justify-between p-3 bg-white rounded shadow-sm border-l-4 border-brand-dark/60">
+                              <span className="font-serif font-bold text-brand-dark">Large</span>
+                              <span className="text-xs font-bold text-brand-pistachio uppercase">{t.upTo4}</span>
                            </div>
-
-                           {/* Card 4 */}
-                           <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
-                              <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
-                                 <Cake size={24} />
-                              </div>
-                              <div>
-                                 <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Zuppa Inglese</h4>
-                                 <p className="text-gray-600 leading-relaxed text-sm">
-                                    {language === 'GR'
-                                       ? 'Παραδοσιακό ιταλικό γλυκό με στρώσεις παντεσπάνι εμποτισμένο σε λικέρ Alkermes, με επικάλυψη πλούσιας σοκολάτας.'
-                                       : 'Traditional Italian treat with layers of sponge base soaked in Alkermes liqueur, topped with rich chocolate.'}
-                                 </p>
-                              </div>
+                           <div className="flex items-center justify-between p-3 bg-white rounded shadow-sm border-l-4 border-brand-gold">
+                              <span className="font-serif font-bold text-brand-gold">XLarge</span>
+                              <span className="text-xs font-bold text-brand-pistachio uppercase">{t.upTo4}</span>
                            </div>
                         </div>
                      </div>
-                  )}
 
+                     {/* Column 3: To Go */}
+                     <div className="flex-none w-[85%] md:w-auto snap-center flex flex-col items-center text-center">
+                        <div className="w-20 h-20 bg-brand-dark text-brand-gold rounded-full flex items-center justify-center mb-6 shadow-xl border-4 border-white">
+                           <Box size={36} strokeWidth={1.5} />
+                        </div>
+                        <h4 className="font-bold text-xl mb-3 text-brand-dark uppercase tracking-widest">{t.togo}</h4>
+                        <div className="h-1 w-8 bg-brand-gold rounded-full mb-6"></div>
 
+                        <div className="grid grid-cols-2 gap-3 w-full max-w-xs mx-auto mb-4">
+                           <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">350g</span>
+                           <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">500g</span>
+                           <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">750g</span>
+                           <span className="py-2 bg-white border border-brand-dark/10 rounded font-serif font-bold text-brand-dark">1kg</span>
+                           <span className="col-span-2 py-2 bg-brand-pistachio/10 border border-brand-pistachio text-brand-pistachio rounded font-serif font-bold">1.5kg</span>
+                        </div>
+                        <p className="text-xs font-bold uppercase tracking-widest text-brand-gold bg-brand-dark px-3 py-1 rounded-full">{t.extraTopping}</p>
+                     </div>
+                  </div>
                </div>
-            </Reveal>
 
-            {/* CTA BUTTON */}
-            <Reveal width="100%" delay={800}>
-               <div className="mt-12 text-center">
-                  <p className="font-serif text-2xl text-brand-dark mb-6 italic">
-                     {language === 'GR' ? 'Έτοιμοι για δοκιμή;' : 'Ready to taste?'}
-                  </p>
-                  <a
-                     href="#locations"
-                     className="inline-block px-12 py-4 bg-brand-dark text-brand-gold font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                  >
-                     {language === 'GR' ? 'Επισκεφθειτε μας' : 'Visit Us'}
-                  </a>
-               </div>
-            </Reveal>
          </div>
+      </div>
+   )
+}
 
-         {/* NO SUGAR INFO POPUP */}
-         {showNoSugarInfo && (
-            <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-fade-in">
-               <div className="bg-white w-full max-w-md rounded-t-2xl md:rounded-2xl p-6 shadow-2xl relative animate-slide-up">
-                  <button
-                     onClick={() => setShowNoSugarInfo(false)}
-                     className="absolute top-4 right-4 text-gray-400 hover:text-brand-dark transition-colors"
-                  >
-                     <X size={24} />
-                  </button>
-                  <h4 className="font-serif text-xl font-bold text-brand-dark mb-3">No Sugar Gelato</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                     Χωρίς προσθήκη ζάχαρης – γλυκαίνεται με μαλτιτόλη & σορβιτόλη (πολυόλες). Η υπερβολική κατανάλωση μπορεί να έχει ήπια υπακτική δράση.
+{/* ================= WAFFLE CONTENT ================= */ }
+{
+   activeCategory === 'waffles' && (
+      <div className="flex flex-col lg:flex-row h-full">
+         <div className="lg:w-1/2 relative min-h-[300px] lg:h-auto bg-cover bg-center" style={{ backgroundImage: `url(${waffleImage})` }}>
+
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-end p-8">
+               <div className="text-brand-gold uppercase tracking-widest text-sm font-bold mb-2">Exclusive Recipe</div>
+               <h2 className="text-white font-serif text-4xl lg:text-5xl">{t.heritage}</h2>
+            </div>
+         </div>
+         <div className="lg:w-1/2 p-8 md:p-16 bg-brand-cream/30">
+            <div className="space-y-8">
+               <div>
+                  <h3 className="font-serif text-3xl text-brand-dark mb-4">{t.grandma}</h3>
+                  <p className="text-gray-700 leading-relaxed italic border-l-4 border-brand-gold pl-4">
+                     {t.grandmaDesc}
                   </p>
-                  <button
-                     onClick={() => setShowNoSugarInfo(false)}
-                     className="w-full py-3 bg-brand-dark text-brand-gold font-bold rounded-lg uppercase tracking-widest text-sm hover:bg-gray-800 transition-colors"
-                  >
-                     OK
-                  </button>
+               </div>
+
+               <div className="bg-white p-8 rounded-lg shadow-sm border border-brand-dark/5">
+                  <h4 className="font-bold text-brand-dark uppercase tracking-widest mb-6">{t.create}</h4>
+
+                  <div className="space-y-6">
+                     <div className="flex items-start gap-4">
+                        <div className="bg-brand-dark text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-serif font-bold">1</div>
+                        <div>
+                           <span className="block font-bold text-lg text-brand-dark">{t.base}</span>
+                           <span className="text-gray-600 text-sm">{t.baseDesc}</span>
+                        </div>
+                     </div>
+
+                     <div className="w-px h-8 bg-gray-300 ml-4"></div>
+
+                     <div className="flex items-start gap-4">
+                        <div className="bg-brand-gold text-brand-dark w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-serif font-bold">2</div>
+                        <div>
+                           <span className="block font-bold text-lg text-brand-dark">{t.addGelato}</span>
+                           <span className="text-gray-600 text-sm">{t.addGelatoDesc}</span>
+                           <div className="flex gap-2 mt-2">
+                              <span className="px-2 py-1 bg-brand-cream text-xs border border-brand-dark/20 rounded">+ 1 Scoop</span>
+                              <span className="px-2 py-1 bg-brand-cream text-xs border border-brand-dark/20 rounded">+ 2 Scoops</span>
+                              <span className="px-2 py-1 bg-brand-cream text-xs border border-brand-dark/20 rounded">+ 3 Scoops</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
-         )}
-
+         </div>
       </div>
+   )
+}
+
+{/* ================= COFFEE CONTENT ================= */ }
+{
+   activeCategory === 'coffee' && (
+      <div className="p-8 md:p-16 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+         <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+               <div>
+                  <h3 className="font-serif text-4xl text-brand-dark">{t.coffeeColl}</h3>
+                  <p className="text-brand-gold uppercase tracking-widest text-sm mt-2">Strictly Classic</p>
+                  {language === 'GR' && (
+                     <p className="text-gray-600 mt-4 max-w-2xl text-sm leading-relaxed">
+                        Οι καλύτερες ποικιλίες καφέ των Κολομβιανών Άνδεων και του Espirito Santo της Βραζιλίας επιλέχθηκαν με τεράστια προσοχή και καβουρντίστηκαν με μεγάλη φροντίδα αλλά και γνώση από τους μεγαλύτερους γνώστες του καφέ για να δημιουργηθεί το πιο ευωδιαστό και νοστιμότερο Ιταλικό blend. Εμείς στο BOMBOLO φροντίζουμε να τον παρασκευάσουμε με τον «Ιταλικότερο» τρόπο για να σας ταξιδέψουμε στην Fontana di Trevi και στην Piazza San Marco…….
+                     </p>
+                  )}
+               </div>
+               <div className="bg-brand-dark text-brand-gold px-6 py-3 rounded-full font-bold uppercase text-xs tracking-widest shadow-lg flex items-center gap-2">
+                  <IceCream size={16} /> {t.tip}
+               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+               {coffees.map((c, idx) => (
+                  <div key={idx} className="group bg-white/50 hover:bg-white p-6 rounded-lg transition-all duration-300 border border-transparent hover:border-brand-gold/30 hover:shadow-lg">
+                     <div className="flex items-center gap-4 mb-3">
+                        <div className="p-3 bg-brand-dark/5 rounded-full text-brand-dark group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
+                           <c.icon size={24} strokeWidth={1.5} />
+                        </div>
+                        <h4 className="font-serif text-xl font-bold text-brand-dark group-hover:text-brand-gold transition-colors">{c.name}</h4>
+                     </div>
+                     <div className="h-px w-12 bg-brand-gold/50 mb-3"></div>
+                     <p className="text-gray-600 text-sm leading-relaxed">{c.desc}</p>
+                  </div>
+               ))}
+            </div>
+         </div>
+      </div>
+   )
+}
+
+{/* ================= SWEETS CONTENT ================= */ }
+{
+   activeCategory === 'sweets' && (
+      <div className="p-8 md:p-12">
+         <div className="text-center mb-12">
+            <h3 className="font-serif text-4xl text-brand-dark">{t.desserts}</h3>
+            <p className="text-gray-500 mt-2">Classic desserts.</p>
+         </div>
+
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Card 1 */}
+            <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
+               <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
+                  <Star size={24} fill="currentColor" />
+               </div>
+               <div>
+                  <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Profiterole</h4>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                     {language === 'GR'
+                        ? 'Αφράτα σου γεμιστά με πλούσια κρέμα (ή παγωτό), σερβιρισμένα με απαλή σάλτσα από εκλεκτή σοκολάτα Λατινικής Αμερικής.'
+                        : 'Airy choux pastry filled with rich cream (or gelato), served with a smooth sauce made from fine chocolate from Latin America.'}
+                  </p>
+               </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
+               <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
+                  <Star size={24} fill="currentColor" />
+               </div>
+               <div>
+                  <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Gelato Chicago</h4>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                     {language === 'GR'
+                        ? 'Σοκολάτα gelato με έντονη γεύση, συνοδευόμενη από σάλτσα προφιτερόλ και σαντιγί.'
+                        : 'Chocolate gelato with intense flavor, accompanied by profiterole sauce and finished with whipped cream.'}
+                  </p>
+               </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
+               <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
+                  <Cake size={24} />
+               </div>
+               <div>
+                  <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Tiramisu</h4>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                     {language === 'GR'
+                        ? 'Φρέσκο τιραμισού με πλούσιο μασκαρπόνε και λικέρ αμαρέτο.'
+                        : 'Fresh tiramisu with rich mascarpone and amaretto liqueur.'}
+                  </p>
+               </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-brand-cream/30 p-8 rounded-xl border border-brand-dark/5 flex gap-6 items-start hover:bg-brand-cream transition-colors">
+               <div className="bg-brand-dark text-brand-gold p-3 rounded-full shrink-0">
+                  <Cake size={24} />
+               </div>
+               <div>
+                  <h4 className="font-serif text-2xl font-bold text-brand-dark mb-2">Zuppa Inglese</h4>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                     {language === 'GR'
+                        ? 'Παραδοσιακό ιταλικό γλυκό με στρώσεις παντεσπάνι εμποτισμένο σε λικέρ Alkermes, με επικάλυψη πλούσιας σοκολάτας.'
+                        : 'Traditional Italian treat with layers of sponge base soaked in Alkermes liqueur, topped with rich chocolate.'}
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   )
+}
+
+
+               </div >
+            </Reveal >
+
+   {/* CTA BUTTON */ }
+   < Reveal width = "100%" delay = { 800} >
+      <div className="mt-12 text-center">
+         <p className="font-serif text-2xl text-brand-dark mb-6 italic">
+            {language === 'GR' ? 'Έτοιμοι για δοκιμή;' : 'Ready to taste?'}
+         </p>
+         <a
+            href="#locations"
+            className="inline-block px-12 py-4 bg-brand-dark text-brand-gold font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 rounded-sm shadow-xl hover:shadow-2xl hover:-translate-y-1"
+         >
+            {language === 'GR' ? 'Επισκεφθειτε μας' : 'Visit Us'}
+         </a>
+      </div>
+            </Reveal >
+         </div >
+
+   {/* NO SUGAR INFO POPUP */ }
+{
+   showNoSugarInfo && (
+      <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-fade-in">
+         <div className="bg-white w-full max-w-md rounded-t-2xl md:rounded-2xl p-6 shadow-2xl relative animate-slide-up">
+            <button
+               onClick={() => setShowNoSugarInfo(false)}
+               className="absolute top-4 right-4 text-gray-400 hover:text-brand-dark transition-colors"
+            >
+               <X size={24} />
+            </button>
+            <h4 className="font-serif text-xl font-bold text-brand-dark mb-3">No Sugar Gelato</h4>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+               Χωρίς προσθήκη ζάχαρης – γλυκαίνεται με μαλτιτόλη & σορβιτόλη (πολυόλες). Η υπερβολική κατανάλωση μπορεί να έχει ήπια υπακτική δράση.
+            </p>
+            <button
+               onClick={() => setShowNoSugarInfo(false)}
+               className="w-full py-3 bg-brand-dark text-brand-gold font-bold rounded-lg uppercase tracking-widest text-sm hover:bg-gray-800 transition-colors"
+            >
+               OK
+            </button>
+         </div>
+      </div>
+   )
+}
+
+      </div >
    );
 };
 

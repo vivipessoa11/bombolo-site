@@ -6,19 +6,30 @@ import chocolateHero from '../src/assets/chocolate.jpg';
 import fragolaHero from '../src/assets/fragola.jpg';
 import waffleHero from '../src/assets/waffle.jpg';
 import cafeHero from '../src/assets/CAFFE AFFOGATO.JPG';
+import coneGelato from '../src/assets/conegelato.jpg';
+import coneGelato2 from '../src/assets/conegelato2.jpg';
 
 interface HeroProps {
   language: Language;
 }
 
 const Hero: React.FC<HeroProps> = ({ language }) => {
-  const images = [pistachioHero, chocolateHero, fragolaHero, waffleHero, cafeHero];
+  // Mixed order as requested: not sequential
+  const images = [
+    pistachioHero,
+    coneGelato,
+    chocolateHero,
+    waffleHero,
+    coneGelato2,
+    fragolaHero,
+    cafeHero
+  ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change every 5 seconds
+    }, 3500); // Faster transition (3.5s)
 
     return () => clearInterval(interval);
   }, [images.length]);
