@@ -19,7 +19,15 @@ const Story: React.FC<StoryProps> = ({ language }) => {
       ? 'Με το μοναδικό του Ιταλικό Gelato και τα αρώματα του καφέ του θα περπατήσεις στα σοκάκια της Νάπολης, του Παλέρμο και στα ομορφότερα χωριά της Τοσκάνης και της Λομβαρδίας. Η βάφλα του θα σε πάει βόλτα στην Λιέγη και στα κανάλια του Μπρίζ ενώ οι γαλλικές του σοκολάτες στα ρομαντικότερα δρομάκια του Παρισιού και των Βρυξελών.'
       : 'He brought this knowledge back to Thessaloniki, the gastronomic capital of Greece. Here, we fuse traditional Italian techniques with a relentless obsession for quality.',
     sourceTitle: language === 'GR' ? 'Πρώτες Ύλες' : 'Premium Sourcing',
-    sourceDesc: language === 'GR' ? 'Προμηθευόμαστε αυστηρά από τις καλύτερες περιοχές: Φιστίκια από το Bronte, Φουντούκια από το Πιεμόντε και Κακάο από την Κολομβία.' : 'We source strictly from the best regions: Pistachios from Bronte, Hazelnuts from Piedmont, and Cacao from Colombia.',
+    sourceDesc: language === 'GR' ? (
+      <>
+        Προμηθευόμαστε αυστηρά από τις καλύτερες περιοχές: <span className="font-serif text-brand-gold font-bold italic text-lg px-1">Bombolo Gelato</span>
+      </>
+    ) : (
+      <>
+        We source strictly from the best regions: <span className="font-serif text-brand-gold font-bold italic text-lg px-1">Bombolo Gelato</span>
+      </>
+    ),
     prepTitle: language === 'GR' ? 'Καθημερινή Παρασκευή' : 'Prepared Daily',
     prepDesc: language === 'GR' ? 'Το εργαστήριό μας δεν σταματά ποτέ. Παράγουμε το gelato μας φρέσκο κάθε μέρα για να εξασφαλίσουμε την τέλεια πυκνή, βελούδινη υφή.' : 'Our lab never stops. We churn our gelato fresh every single day to ensure the perfect dense, velvety texture.',
     pureTitle: language === 'GR' ? 'Αγνά Συστατικά' : 'Pure Ingredients',

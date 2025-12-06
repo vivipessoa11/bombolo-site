@@ -37,7 +37,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, onOpenDelivery
     { href: '#about', label: t.story },
     { href: '#difference', label: t.difference },
     { href: '#menu', label: t.menu },
-    { href: '#locations', label: t.locations },
   ];
 
   return (

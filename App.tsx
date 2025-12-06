@@ -49,7 +49,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full">
       <Navbar
         scrolled={scrolled}
         onOpenContact={() => handleOpenContact()}

@@ -12,19 +12,19 @@ const Education: React.FC<EducationProps> = ({ language }) => {
    const t = {
       title: language === 'GR' ? 'GELATO' : 'BOMBOLO: THE ESSENCE OF QUALITY',
       subtitle: language === 'GR'
-         ? 'Μοναδικό Χειροποίητο Ιταλικό Gelato Bombolo το οποίο παράγουμε καθημερινά στο κατάστημα από φρέσκο γάλα και υψηλής ποιότητας Ιταλικές πρώτες ύλες με μοναδική κρεμώδη υφή και λίγα λιπαρά όπως ακριβώς πρέπει να είναι το ΑΥΘΕΝΤΙΚΟ και ΠΟΙΟΤΙΚΟ ΙΤΑΛΙΚΟ GELATO !!! Ολόφρεσκο, Χωρίς σκόνες, συντηρητικά και χρωστικές ουσίες. Φτιαγμένο με τα αγνότερα υλικά, ολόφρεσκα φρούτα και τις καλύτερες Ιταλικές συνταγές. Γεύσεις απίστευτες που τις δημιούργησε η γνώση και η αγάπη για το Gelato και που η κάθε μια από αυτές έχει την δική της ταυτότητα !!!'
+         ? 'Μοναδικό Χειροποίητο Ιταλικό Gelato Bombolo το οποίο παράγουμε καθημερινά στο κατάστημα από υψηλής ποιότητας πρώτες ύλες με μοναδική κρεμώδη υφή και λίγα λιπαρά όπως ακριβώς πρέπει να είναι το ΑΥΘΕΝΤΙΚΟ και ΠΟΙΟΤΙΚΟ ΙΤΑΛΙΚΟ GELATO !!! Ολόφρεσκο, Χωρίς συντηρητικά και χρωστικές ουσίες. Φτιαγμένο με τα αγνότερα υλικά, ολόφρεσκα φρούτα και τις καλύτερες Ιταλικές συνταγές. Γεύσεις απίστευτες που τις δημιούργησε η γνώση και η αγάπη για το Gelato και που η κάθε μια από αυτές έχει την δική της ταυτότητα !!!'
          : 'Gelato is not just ice cream. It is an experience of taste, texture, and temperature.',
       cards: [
          {
             icon: Milk,
             title: language === 'GR' ? 'Αγνά Υλικά' : 'Pure Ingredients',
             desc: language === 'GR'
-               ? 'Περισσότερο φρέσκο γάλα, λιγότερη κρέμα. Μια καθαρή βάση που αναδεικνύει την αληθινή γεύση.'
-               : 'More fresh milk, less cream. A clean base that highlights the true flavor.',
+               ? 'Αγνά και ποιοτικά υλικά σε συνταγές μοναδικές που δημιουργούν γεύση, υφή και απόλαυση!!!!'
+               : 'Pure and quality ingredients in unique recipes that create taste, texture and pleasure!!!!',
          },
          {
             icon: Wind,
-            title: language === 'GR' ? 'Λιγότερος Αέρας' : 'Less Air',
+            title: language === 'GR' ? 'Καθόλου Διογκωτικά' : 'No Overrun',
             desc: language === 'GR'
                ? 'Το Gelato αναδεύεται αργά. Αποτέλεσμα: πυκνή, βελούδινη υφή χωρίς κρυστάλλους.'
                : 'Gelato is churned slowly. Result: dense, velvety texture without crystals.',
@@ -33,15 +33,15 @@ const Education: React.FC<EducationProps> = ({ language }) => {
             icon: ThermometerSun,
             title: language === 'GR' ? 'Θερμοκρασία' : 'Temperature',
             desc: language === 'GR'
-               ? 'Σερβίρεται σε υψηλότερη θερμοκρασία (-13°C) για να μην "παγώνει" τη γεύση στο στόμα.'
-               : 'Served at a higher temperature (-13°C) so it doesn\'t "freeze" the flavor in your mouth.',
+               ? 'Σερβίρεται σε υψηλότερη θερμοκρασία (-13°C) για να μην "παγώνει" τους γευστικούς κάλυκες και αλλοιώνει την γεύση.'
+               : 'Served at a higher temperature (-13°C) so it doesn\'t "freeze" your taste buds and alter the flavor.',
          },
          {
             icon: Sparkles,
             title: language === 'GR' ? 'Το Αποτέλεσμα' : 'The Result',
             desc: language === 'GR'
-               ? 'Μια έκρηξη γεύσης που διαρκεί. Λιγότερα λιπαρά, περισσότερη απόλαυση.'
-               : 'An explosion of flavor that lasts. Less fat, more pleasure.',
+               ? 'Μια έκρηξη γεύσης που διαρκεί. Λιγότερα λιπαρά και ζάχαρη, περισσότερη απόλαυση.'
+               : 'An explosion of flavor that lasts. Less fat and sugar, more pleasure.',
          },
       ]
    };
