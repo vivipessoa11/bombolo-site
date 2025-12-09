@@ -42,14 +42,47 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
     return () => clearInterval(interval);
   }, [nextImage]);
 
+  // Swipe Detection
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextImage();
+    } else if (isRightSwipe) {
+      prevImage();
+    }
+  };
+
   return (
-    <div className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-brand-dark group">
+    <div
+      className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-brand-dark group"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
 
       {/* Background Image Slideshow */}
       {images.map((img, index) => (
         <div
           key={index}
-          className={`absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+          className={`absolute inset-0 z-0 transition-opacity duration-700 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
         >
           <img
@@ -64,23 +97,6 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/60" />
         </div>
       ))}
-
-      {/* Manual Controls */}
-      <button
-        onClick={prevImage}
-        className="absolute left-4 z-30 p-2 text-white/50 hover:text-brand-gold transition-colors hover:bg-black/20 rounded-full md:opacity-0 group-hover:opacity-100 duration-300"
-        aria-label="Previous Image"
-      >
-        <ChevronLeft size={48} strokeWidth={1} />
-      </button>
-
-      <button
-        onClick={nextImage}
-        className="absolute right-4 z-30 p-2 text-white/50 hover:text-brand-gold transition-colors hover:bg-black/20 rounded-full md:opacity-0 group-hover:opacity-100 duration-300"
-        aria-label="Next Image"
-      >
-        <ChevronRight size={48} strokeWidth={1} />
-      </button>
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto flex flex-col items-center justify-center h-full mt-0">
