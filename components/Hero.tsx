@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowDown } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { ArrowDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Language } from '../App';
 import pistachioHero from '../src/assets/pistachio.jpg';
 import chocolateHero from '../src/assets/chocolate.jpg';
@@ -26,16 +26,24 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3500); // Faster transition (3.5s)
-
-    return () => clearInterval(interval);
+  const nextImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
   }, [images.length]);
 
+  const prevImage = useCallback(() => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  }, [images.length]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 4000); // Slightly slower for better UX with manual controls available
+
+    return () => clearInterval(interval);
+  }, [nextImage]);
+
   return (
-    <div className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-brand-dark">
+    <div className="relative h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-brand-dark group">
 
       {/* Background Image Slideshow */}
       {images.map((img, index) => (
@@ -57,14 +65,31 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
         </div>
       ))}
 
+      {/* Manual Controls */}
+      <button
+        onClick={prevImage}
+        className="absolute left-4 z-30 p-2 text-white/50 hover:text-brand-gold transition-colors hover:bg-black/20 rounded-full md:opacity-0 group-hover:opacity-100 duration-300"
+        aria-label="Previous Image"
+      >
+        <ChevronLeft size={48} strokeWidth={1} />
+      </button>
+
+      <button
+        onClick={nextImage}
+        className="absolute right-4 z-30 p-2 text-white/50 hover:text-brand-gold transition-colors hover:bg-black/20 rounded-full md:opacity-0 group-hover:opacity-100 duration-300"
+        aria-label="Next Image"
+      >
+        <ChevronRight size={48} strokeWidth={1} />
+      </button>
+
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto flex flex-col items-center justify-center h-full mt-0">
 
         {/* Main Headline - Specific Greek Text */}
         <div className="flex flex-col items-center mb-10">
-          {/* New Pistacchio Text */}
-          <h3 className="font-serif text-2xl md:text-4xl text-brand-pistachio italic mb-4 animate-fade-in drop-shadow-lg">
-            Pistacchio di Bronte
+          {/* Replaced Text as requested */}
+          <h3 className="font-serif text-3xl md:text-5xl text-brand-gold italic mb-6 animate-fade-in drop-shadow-lg tracking-wide">
+            Bombolo Gelato
           </h3>
 
           <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl text-brand-cream font-medium leading-tight mb-2 drop-shadow-2xl animate-slide-up">

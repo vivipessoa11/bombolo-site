@@ -79,11 +79,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
+          name: formData.name,     // Matches {{name}} in template
+          email: formData.email,   // Matches {{email}} in template (for Reply To)
+          phone: formData.phone,   // Add {{phone}} to template content if needed
+          title: formData.subject, // Map subject to {{title}} if that's what is used
+          subject: formData.subject, // Send both just in case
+          message: formData.message, // Matches {{message}} in template
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
@@ -137,6 +138,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+
+              {/* Error Message */}
+              {error && (
+                <div className="p-3 bg-red-50 border border-red-100 rounded text-red-600 text-sm flex items-center gap-2 mb-4 animate-fade-in">
+                  <X size={16} />
+                  {error}
+                </div>
+              )}
 
               {/* Subject Selection */}
               <div className="space-y-2">
