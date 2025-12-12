@@ -14,6 +14,8 @@ import InstagramFeed from './components/InstagramFeed';
 import DeliveryModal from './components/DeliveryModal';
 import MobileQuickMenu from './components/MobileQuickMenu';
 import CookieConsent from './components/CookieConsent';
+import Preloader from './components/Preloader';
+import CustomCursor from './components/CustomCursor';
 
 
 export type Language = 'GR' | 'EN';
@@ -50,6 +52,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full">
+      <Preloader />
+      <CustomCursor />
       <Navbar
         scrolled={scrolled}
         onOpenContact={() => handleOpenContact()}

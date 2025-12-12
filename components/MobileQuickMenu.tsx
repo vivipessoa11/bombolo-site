@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, MapPin, Bike, IceCream, X, Plus, Navigation } from 'lucide-react';
+import ReactGA from 'react-ga4';
 import { Language } from '../App';
 
 interface MobileQuickMenuProps {
@@ -38,11 +39,16 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
     };
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen);
+        const newState = !isOpen;
+        setIsOpen(newState);
+        if (newState) {
+            ReactGA.event({ category: 'MobileMenu', action: 'Open Menu' });
+        }
         if (showCallModal) setShowCallModal(false);
     };
 
-    const scrollToSection = (id: string) => {
+    const scrollToSection = (id: string, label: string) => {
+        ReactGA.event({ category: 'MobileMenu', action: `Click ${label}` });
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -51,7 +57,18 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
     };
 
     const handleCallClick = () => {
+        ReactGA.event({ category: 'MobileMenu', action: 'Open Call Modal' });
         setShowCallModal(true);
+    };
+
+    const handleStoreCall = (store: string) => {
+        ReactGA.event({ category: 'Conversion', action: 'Call', label: store });
+    };
+
+    const handleDeliveryClick = () => {
+        ReactGA.event({ category: 'Conversion', action: 'Click Delivery' });
+        onOpenDelivery();
+        setIsOpen(false);
     };
 
     // If invisible, don't render or render hidden to avoid clicks
@@ -74,7 +91,7 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
                     </button>
                 </div>
                 <div className="grid grid-cols-1 gap-3">
-                    <a href="tel:+302310229398" className="flex items-center gap-4 p-4 border border-brand-dark/10 rounded-lg active:bg-brand-cream transition-colors">
+                    <a onClick={() => handleStoreCall('Center')} href="tel:+302310229398" className="flex items-center gap-4 p-4 border border-brand-dark/10 rounded-lg active:bg-brand-cream transition-colors">
                         <div className="bg-brand-dark text-brand-gold p-3 rounded-full">
                             <Phone size={20} />
                         </div>
@@ -83,7 +100,7 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
                             <span className="text-xs text-gray-500">Mitropoleos 88</span>
                         </div>
                     </a>
-                    <a href="tel:+302310229398" className="flex items-center gap-4 p-4 border border-brand-dark/10 rounded-lg active:bg-brand-cream transition-colors">
+                    <a onClick={() => handleStoreCall('Toumpa')} href="tel:+302310229398" className="flex items-center gap-4 p-4 border border-brand-dark/10 rounded-lg active:bg-brand-cream transition-colors">
                         <div className="bg-brand-dark text-brand-gold p-3 rounded-full">
                             <Phone size={20} />
                         </div>
@@ -99,7 +116,7 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
             <div className={`fixed bottom-24 right-6 z-40 flex flex-col items-end gap-4 transition-all duration-300 ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0 pointer-events-none'}`}>
 
                 {/* Menu Item: Delivery */}
-                <button onClick={() => { onOpenDelivery(); setIsOpen(false); }} className="flex items-center gap-3 group">
+                <button onClick={handleDeliveryClick} className="flex items-center gap-3 group">
                     <span className="bg-white text-brand-dark text-xs font-bold py-1 px-3 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{t.delivery}</span>
                     <div className="w-12 h-12 bg-white text-brand-dark rounded-full shadow-lg flex items-center justify-center border border-brand-gold/50 hover:bg-brand-gold hover:text-brand-dark transition-colors">
                         <Bike size={20} />
@@ -107,7 +124,7 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
                 </button>
 
                 {/* Menu Item: Locations */}
-                <button onClick={() => scrollToSection('locations')} className="flex items-center gap-3 group">
+                <button onClick={() => scrollToSection('locations', 'Locations')} className="flex items-center gap-3 group">
                     <span className="bg-white text-brand-dark text-xs font-bold py-1 px-3 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{t.locations}</span>
                     <div className="w-12 h-12 bg-white text-brand-dark rounded-full shadow-lg flex items-center justify-center border border-brand-gold/50 hover:bg-brand-gold hover:text-brand-dark transition-colors">
                         <MapPin size={20} />
@@ -115,7 +132,7 @@ const MobileQuickMenu: React.FC<MobileQuickMenuProps> = ({ language, onOpenDeliv
                 </button>
 
                 {/* Menu Item: Menu */}
-                <button onClick={() => scrollToSection('menu')} className="flex items-center gap-3 group">
+                <button onClick={() => scrollToSection('menu', 'Menu')} className="flex items-center gap-3 group">
                     <span className="bg-white text-brand-dark text-xs font-bold py-1 px-3 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{t.menu}</span>
                     <div className="w-12 h-12 bg-white text-brand-dark rounded-full shadow-lg flex items-center justify-center border border-brand-gold/50 hover:bg-brand-gold hover:text-brand-dark transition-colors">
                         <IceCream size={20} />

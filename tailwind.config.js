@@ -22,6 +22,15 @@ export default {
                 sans: ['Lato', 'sans-serif'],
                 serif: ['Playfair Display', 'serif'],
             },
+            keyframes: {
+                shimmer: {
+                    '0%': { backgroundPosition: '200% center' },
+                    '100%': { backgroundPosition: '-200% center' },
+                }
+            },
+            animation: {
+                shimmer: 'shimmer 8s linear infinite',
+            },
         },
     },
     plugins: [],
