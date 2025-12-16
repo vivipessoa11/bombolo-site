@@ -101,20 +101,23 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto flex flex-col items-center justify-center h-full mt-0">
 
-        {/* Elite Brand Name - Gold Gradient & Glow with Shimmer */}
+        {/* Elite Brand Name - Gold Gradient & Glow with Shimmer - NOW H1 for SEO */}
         <div className="relative mb-6 group cursor-default">
-          <h3 className="font-serif text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] via-[#edc967] to-[#bf953f] bg-[length:200%_auto] animate-shimmer italic border-b-2 border-brand-gold/0 group-hover:border-brand-gold/50 transition-all duration-700 pb-2 drop-shadow-2xl tracking-wide">
+          <h1 className="font-serif text-4xl md:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] via-[#edc967] to-[#bf953f] bg-[length:200%_auto] animate-shimmer italic border-b-2 border-brand-gold/0 group-hover:border-brand-gold/50 transition-all duration-700 pb-2 drop-shadow-2xl tracking-wide flex flex-col items-center gap-2">
             Bombolo Gelato
-          </h3>
+            <span className="text-sm md:text-lg text-brand-gold/80 font-sans tracking-widest uppercase mt-2 not-italic">
+              {language === 'GR' ? 'Αυθεντικο Ιταλικο Παγωτο στη Θεσσαλονικη' : 'Authentic Italian Gelato in Thessaloniki'}
+            </span>
+          </h1>
           <div className="absolute -inset-1 bg-brand-gold/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
         </div>
 
-        <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl text-brand-cream font-medium leading-tight mb-2 drop-shadow-2xl animate-slide-up">
+        <h2 className="font-serif text-4xl md:text-7xl lg:text-8xl text-brand-cream font-medium leading-tight mb-2 drop-shadow-2xl animate-slide-up">
           {language === 'GR' ? 'Βελούδινη Υφή. Κρεμώδες.' : 'Velvety Texture. Creamy.'}
-        </h1>
-        <h2 className="font-serif text-3xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-8 drop-shadow-2xl italic animate-slide-up delay-200">
-          {language === 'GR' ? 'Αυθεντικό.' : 'Authentic.'}
         </h2>
+        <h3 className="font-serif text-3xl md:text-6xl lg:text-7xl text-white font-medium leading-tight mb-8 drop-shadow-2xl italic animate-slide-up delay-200">
+          {language === 'GR' ? 'Αυθεντικό.' : 'Authentic.'}
+        </h3>
 
         {/* Minimal CTA */}
         <div className="animate-fade-in delay-500">

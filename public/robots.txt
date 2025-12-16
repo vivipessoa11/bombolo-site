@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bombolo.gr/sitemap.xml
+Sitemap: https://bombologelato.com/sitemap.xml
