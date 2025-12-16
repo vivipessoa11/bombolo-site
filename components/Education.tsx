@@ -2,7 +2,7 @@ import React from 'react';
 import { Milk, Wind, ThermometerSun, Sparkles } from 'lucide-react';
 import { Language } from '../App';
 import { Reveal } from './Reveal';
-import pistachioImage from '../src/assets/pistachio.jpg';
+import pistachioImage from '../src/assets/pistachio.webp';
 
 interface EducationProps {
    language: Language;

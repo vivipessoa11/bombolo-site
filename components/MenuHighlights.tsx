@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { IceCream, Coffee, Cake, UtensilsCrossed, Star, Box, Snowflake, Flame, Cloud, Heart, Droplet, ChevronDown, Info, X, Sparkles } from 'lucide-react';
 import { Language } from '../App';
 import { Reveal } from './Reveal';
-import caffeAffogato from '../src/assets/CAFFE AFFOGATO.JPG';
-import waffleImage from '../src/assets/waffle.jpg';
-import bitterImage from '../src/assets/bitter.jpg';
+import caffeAffogato from '../src/assets/CAFFE AFFOGATO.webp';
+import waffleImage from '../src/assets/waffle.webp';
+import bitterImage from '../src/assets/bitter.webp';
 
 type Category = 'gelato' | 'waffles' | 'coffee' | 'sweets';
 type FlavorCategory = 'crema' | 'chocolate' | 'sorbet' | 'nosugar';

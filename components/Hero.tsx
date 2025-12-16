@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ArrowDown } from 'lucide-react';
 import { Language } from '../App';
-import pistachioHero from '../src/assets/pistachio.jpg';
-import chocolateHero from '../src/assets/chocolate.jpg';
-import fragolaHero from '../src/assets/fragola.jpg';
-import waffleHero from '../src/assets/waffle.jpg';
-import cafeHero from '../src/assets/CAFFE AFFOGATO.JPG';
-import coneGelato from '../src/assets/conegelato.jpg';
-import coneGelato2 from '../src/assets/conegelato2.jpg';
+import pistachioHero from '../src/assets/pistachio.webp';
+import chocolateHero from '../src/assets/chocolate.webp';
+import fragolaHero from '../src/assets/fragola.webp';
+import waffleHero from '../src/assets/waffle.webp';
+import cafeHero from '../src/assets/CAFFE AFFOGATO.webp';
+import coneGelato from '../src/assets/conegelato.webp';
+import coneGelato2 from '../src/assets/conegelato2.webp';
 
 interface HeroProps {
   language: Language;

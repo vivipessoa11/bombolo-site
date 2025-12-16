@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Language } from '../App';
-import woltLogo from '../src/assets/wolt.png';
-import efoodLogo from '../src/assets/efood.png';
+import woltLogo from '../src/assets/wolt.webp';
+import efoodLogo from '../src/assets/efood.webp';
 
 interface DeliveryModalProps {
     isOpen: boolean;

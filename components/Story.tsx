@@ -1,7 +1,7 @@
 import React from 'react';
 import { Globe2, ChefHat, Droplet } from 'lucide-react';
 import { Language } from '../App';
-import bitterImage from '../src/assets/bitter.jpg';
+import bitterImage from '../src/assets/bitter.webp';
 import { Reveal } from './Reveal';
 
 interface StoryProps {

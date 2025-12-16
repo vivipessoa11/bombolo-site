@@ -4,12 +4,12 @@ import { Reveal } from './Reveal';
 import { Language } from '../App';
 
 // Import existing assets to simulate feed
-import pistachio from '../src/assets/pistachio.jpg';
-import chocolate from '../src/assets/chocolate.jpg';
-import fragola from '../src/assets/fragola.jpg';
-import waffle from '../src/assets/waffle.jpg';
-import bitter from '../src/assets/bitter.jpg';
-import caffe from '../src/assets/CAFFE AFFOGATO.JPG';
+import pistachio from '../src/assets/pistachio.webp';
+import chocolate from '../src/assets/chocolate.webp';
+import fragola from '../src/assets/fragola.webp';
+import waffle from '../src/assets/waffle.webp';
+import bitter from '../src/assets/bitter.webp';
+import caffe from '../src/assets/CAFFE AFFOGATO.webp';
 
 interface InstagramFeedProps {
     language: Language;
