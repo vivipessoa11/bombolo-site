@@ -138,8 +138,8 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, onOpenDelivery
           className={`absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col justify-center px-10 transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] ${isOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
-          {/* Language Switcher Mobile */}
-          <div className="absolute top-8 left-8 flex gap-4">
+          {/* Language Switcher Mobile - Moved down to clear navbar */}
+          <div className="absolute top-28 left-8 flex gap-4">
             <button onClick={() => setLanguage('GR')} className={`text-sm font-bold tracking-widest transition-colors ${language === 'GR' ? 'text-brand-dark border-b-2 border-brand-gold' : 'text-gray-400'}`}>GR</button>
             <button onClick={() => setLanguage('EN')} className={`text-sm font-bold tracking-widest transition-colors ${language === 'EN' ? 'text-brand-dark border-b-2 border-brand-gold' : 'text-gray-400'}`}>EN</button>
           </div>
