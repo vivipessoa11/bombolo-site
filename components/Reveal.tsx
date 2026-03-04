@@ -4,7 +4,8 @@ interface RevealProps {
     children: React.ReactNode;
     width?: 'fit-content' | '100%';
     delay?: number;
-    className?: string; // Allow extra classes
+    className?: string;
+    key?: React.Key;
 }
 
 export const Reveal = ({ children, width = 'fit-content', delay = 0, className = '' }: RevealProps) => {
