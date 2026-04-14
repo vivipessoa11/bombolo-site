@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Bombolo Gelato | Authentic Italian Gelato in Thessaloniki</title>
   <meta name="description"
     content="Discover the best artisanal gelato in Thessaloniki. Neo-Mediterranean flavors, authentic Belgian waffles, and premium desserts. Handcrafted daily." />
@@ -31,34 +34,64 @@
 
   <!-- Schema Markup (JSON-LD) -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Bombolo Gelato",
-      "image": "https://bombolo.gr/logo2.png",
-      "telephone": "+30 231 022 9398",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Mitropoleos 88",
-        "addressLocality": "Thessaloniki",
-        "postalCode": "546 22",
-        "addressCountry": "GR"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Bombolo Gelato - Mitropoleos",
+        "image": "https://bombologelato.com/pistachio.jpg",
+        "telephone": "+30 231 022 9398",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mitropoleos 88",
+          "addressLocality": "Thessaloniki",
+          "postalCode": "546 22",
+          "addressCountry": "GR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.6322,
+          "longitude": 22.9408
+        },
+        "url": "https://bombologelato.com",
+        "sameAs": [
+          "https://www.instagram.com/bomboloskg",
+          "https://www.facebook.com/bomboloskg",
+          "https://www.tiktok.com/@bombologelato",
+          "https://wolt.com/en/grc/thessaloniki/restaurant/bombolo"
+        ],
+        "servesCuisine": ["Gelato", "Ice Cream", "Desserts", "Coffee", "Waffles"],
+        "priceRange": "$$"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 40.6322,
-        "longitude": 22.9408
-      },
-      "url": "https://bombolo.gr",
-      "sameAs": [
-        "https://www.instagram.com/bomboloskg",
-        "https://www.facebook.com/bomboloskg",
-        "https://www.tiktok.com/@bombologelato",
-        "https://wolt.com/en/grc/thessaloniki/restaurant/bombolo"
-      ],
-      "servesCuisine": ["Gelato", "Ice Cream", "Desserts", "Coffee", "Waffles"],
-      "priceRange": "$$"
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Bombolo Gelato - Toumpa",
+        "image": "https://bombologelato.com/pistachio.jpg",
+        "telephone": "+30 231 022 9398",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Grigoriou Lampraki 150",
+          "addressLocality": "Thessaloniki",
+          "postalCode": "543 51",
+          "addressCountry": "GR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.6142,
+          "longitude": 22.9635
+        },
+        "url": "https://bombologelato.com",
+        "sameAs": [
+          "https://www.instagram.com/bomboloskg",
+          "https://www.facebook.com/bomboloskg",
+          "https://www.tiktok.com/@bombologelato",
+          "https://wolt.com/en/grc/thessaloniki/restaurant/bombolo"
+        ],
+        "servesCuisine": ["Gelato", "Ice Cream", "Desserts", "Coffee", "Waffles"],
+        "priceRange": "$$"
+      }
+    ]
   </script>
 
   <!-- Favicon (Brand "Ok" Hand/Logo Concept) -->
@@ -85,19 +118,24 @@
           },
           colors: {
             brand: {
-              dark: '#2B1A17', // Dark brown (background)
-              gold: '#C59A3B', // Premium gold (discreto)
-              cream: '#F6F0E8', // Elegant off-white (text/fundo luxuoso)
-              text: '#3A2320', // Text brown
-              pistachio: '#93C572', // Keeping for accents if needed, or replace if strict
-              berry: '#8B2E3E', // Keeping for accents
-              surface: '#F6F0E8', // Matching cream
+              dark: '#2B1A17',
+              gold: '#C59A3B',
+              cream: '#F6F0E8',
+              text: '#3A2320',
+              pistachio: '#93C572',
+              berry: '#8B2E3E',
+              surface: '#F6F0E8',
+              red: '#691f06',
+              green: '#1B4D3E',
+              brown: '#2C1810',
+              light: '#F6F0E8',
             }
           },
           animation: {
             'subtle-scale': 'subtle-scale 20s ease-in-out infinite alternate',
             'slide-up': 'slideUp 0.8s ease-out forwards',
             'fade-in': 'fadeIn 1s ease-out forwards',
+            'shimmer': 'shimmer 8s linear infinite',
           },
           keyframes: {
             'subtle-scale': {
@@ -111,6 +149,10 @@
             fadeIn: {
               'from': { opacity: '0' },
               'to': { opacity: '1' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '200% center' },
+              '100%': { backgroundPosition: '-200% center' },
             }
           }
         }

@@ -29,6 +29,11 @@ export default function App() {
   // Default Language is Greek as requested
   const [language, setLanguage] = useState<Language>('GR');
 
+  // Update html lang attribute when language changes
+  useEffect(() => {
+    document.documentElement.lang = language === 'GR' ? 'el' : 'en';
+  }, [language]);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
