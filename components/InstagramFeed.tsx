@@ -42,7 +42,7 @@ const InstagramFeed: React.FC<InstagramFeedProps> = ({ language }) => {
                             className="inline-flex items-center gap-2 text-brand-dark hover:text-brand-gold transition-colors duration-300 group"
                         >
                             <Instagram size={24} />
-                            <h3 className="font-serif text-3xl md:text-4xl font-bold">@bombologelato</h3>
+                            <h3 className="font-serif text-3xl md:text-4xl font-bold">@bomboloskg</h3>
                         </a>
                     </Reveal>
                     <Reveal width="100%" delay={200}>

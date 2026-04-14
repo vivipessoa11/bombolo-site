@@ -78,7 +78,7 @@ const Education: React.FC<EducationProps> = ({ language }) => {
 
                {/* Cards Grid / Carousel */}
                <div className="lg:w-1/2 w-full">
-                  <div className="flex md:grid md:grid-cols-2 gap-6 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 hide-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+                  <div className="flex md:grid md:grid-cols-2 gap-6 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
                      {t.cards.map((card, idx) => (
                         <Reveal key={idx} width="100%" delay={idx * 150} className="min-w-[280px] md:min-w-0 snap-center h-full">
                            <div className="bg-white p-8 rounded-xl shadow-sm border border-brand-gold/20 hover:shadow-md transition-shadow duration-300 h-full flex flex-col items-start group">

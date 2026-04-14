@@ -50,13 +50,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
       if (initialSubject) {
         setFormData(prev => ({ ...prev, subject: initialSubject }));
       }
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') onClose();
+      };
+      window.addEventListener('keydown', handleEscape);
+      return () => {
+        document.body.style.overflow = 'unset';
+        window.removeEventListener('keydown', handleEscape);
+      };
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen, initialSubject]);
+  }, [isOpen, initialSubject, onClose]);
 
   if (!isOpen) return null;
 
@@ -116,6 +121,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
       <div className="relative bg-brand-cream w-full max-w-3xl rounded-xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
         <button
           onClick={onClose}
+          aria-label="Close"
           className="absolute top-4 right-4 p-2 bg-white/50 hover:bg-white rounded-full transition-colors z-10"
         >
           <X size={24} className="text-brand-dark" />
@@ -247,7 +253,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ isOpen, onClose, language, in
                   {isLoading ? (
                     <>
                       <Loader2 size={16} className="animate-spin" />
-                      Wait...
+                      {language === 'GR' ? 'Περιμένετε...' : 'Wait...'}
                     </>
                   ) : (
                     t.send

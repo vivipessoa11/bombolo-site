@@ -68,7 +68,7 @@ const Story: React.FC<StoryProps> = ({ language }) => {
           <div className="space-y-8">
             <Reveal width="100%" delay={200}>
               <div>
-                <h3 className="text-brand-pistachio font-bold tracking-widest uppercase text-sm mb-2">{t.subtitle}</h3>
+                <span className="text-brand-pistachio font-bold tracking-widest uppercase text-sm mb-2 block">{t.subtitle}</span>
                 <h2 className="font-serif text-4xl md:text-5xl text-brand-dark mb-6">{t.title}</h2>
                 <p className="text-brand-dark/80 leading-relaxed text-lg mb-4">
                   {t.p1}
@@ -119,7 +119,7 @@ const Story: React.FC<StoryProps> = ({ language }) => {
             </div>
 
             {/* Mobile Carousel Version */}
-            <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pt-4 border-t border-brand-dark/10 pb-4 hide-scrollbar -mx-6 px-6">
+            <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pt-4 border-t border-brand-dark/10 pb-4 scrollbar-hide -mx-6 px-6">
               <div className="min-w-[280px] snap-center bg-white/50 p-4 rounded-lg border border-brand-dark/5">
                 <div className="flex items-start gap-3">
                   <div className="bg-brand-dark text-brand-gold p-2 rounded-full shrink-0">

@@ -61,9 +61,9 @@ const Footer: React.FC<FooterProps> = ({ language, onOpenContact }) => {
               <span className="font-medium text-sm">info@bombologelato.com</span>
             </a>
             <div className="flex space-x-4">
-              <a href="https://instagram.com/bomboloskg/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors"><Instagram size={18} /></a>
-              <a href="https://www.facebook.com/bomboloskg" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors"><Facebook size={18} /></a>
-              <a href="https://youtube.com/@bombologelato" target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors"><Youtube size={18} /></a>
+              <a href="https://instagram.com/bomboloskg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-brand-gold transition-colors"><Instagram size={18} /></a>
+              <a href="https://www.facebook.com/bomboloskg" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-brand-gold transition-colors"><Facebook size={18} /></a>
+              <a href="https://youtube.com/@bombologelato" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-brand-gold transition-colors"><Youtube size={18} /></a>
             </div>
             <p className="text-brand-brown/40 text-[10px]">
               © {new Date().getFullYear()} Bombolo Gelato.

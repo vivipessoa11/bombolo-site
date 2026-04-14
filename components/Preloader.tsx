@@ -31,9 +31,9 @@ const Preloader: React.FC = () => {
         >
             <div className="relative flex flex-col items-center">
                 {/* Animated Text */}
-                <h1 className="font-serif text-5xl md:text-7xl text-brand-gold italic tracking-tighter animate-pulse">
+                <span className="font-serif text-5xl md:text-7xl text-brand-gold italic tracking-tighter animate-pulse" aria-hidden="true">
                     Bombolo.
-                </h1>
+                </span>
                 <div className="mt-4 h-[2px] w-24 bg-brand-gold/30 overflow-hidden relative">
                     <div className="absolute inset-0 bg-brand-gold w-full animate-slide-right"></div>
                 </div>

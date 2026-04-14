@@ -12,15 +12,22 @@ interface DeliveryModalProps {
 
 const DeliveryModal: React.FC<DeliveryModalProps> = ({ isOpen, onClose, language }) => {
 
-    // Lock body scroll
+    // Lock body scroll + Escape key
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
+            const handleEscape = (e: KeyboardEvent) => {
+                if (e.key === 'Escape') onClose();
+            };
+            window.addEventListener('keydown', handleEscape);
+            return () => {
+                document.body.style.overflow = 'unset';
+                window.removeEventListener('keydown', handleEscape);
+            };
         } else {
             document.body.style.overflow = 'unset';
         }
-        return () => { document.body.style.overflow = 'unset'; };
-    }, [isOpen]);
+    }, [isOpen, onClose]);
 
     if (!isOpen) return null;
 
@@ -44,6 +51,7 @@ const DeliveryModal: React.FC<DeliveryModalProps> = ({ isOpen, onClose, language
             <div className="relative bg-white w-full max-w-lg rounded-xl shadow-2xl overflow-hidden animate-fade-in-up">
                 <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-4 right-4 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors z-10"
                 >
                     <X size={20} className="text-brand-dark" />
