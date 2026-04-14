@@ -16,13 +16,13 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ language }) => {
   // Mixed order as requested: not sequential
   const images = [
-    pistachioHero,
-    coneGelato,
-    chocolateHero,
-    waffleHero,
-    coneGelato2,
-    fragolaHero,
-    cafeHero
+    { src: pistachioHero, alt: 'Artisanal pistachio gelato from Bombolo Gelato Thessaloniki' },
+    { src: coneGelato, alt: 'Gelato cone with fresh scoops at Bombolo Gelato' },
+    { src: chocolateHero, alt: 'Rich Italian chocolate gelato handcrafted daily' },
+    { src: waffleHero, alt: 'Authentic Belgian waffle with gelato toppings' },
+    { src: coneGelato2, alt: 'Premium gelato scoops served in a crispy cone' },
+    { src: fragolaHero, alt: 'Fresh strawberry fragola gelato made with real fruit' },
+    { src: cafeHero, alt: 'Caffè affogato with espresso and vanilla gelato' },
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -86,8 +86,8 @@ const Hero: React.FC<HeroProps> = ({ language }) => {
             }`}
         >
           <img
-            src={img}
-            alt="Bombolo Gelato"
+            src={img.src}
+            alt={img.alt}
             className="w-full h-full object-cover object-center hero-zoom"
             loading={index === 0 ? "eager" : "lazy"}
             {...({ fetchPriority: index === 0 ? "high" : "auto" } as React.ImgHTMLAttributes<HTMLImageElement>)}
