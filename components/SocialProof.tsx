@@ -31,7 +31,9 @@ const SocialProof: React.FC<SocialProofProps> = ({ language }) => {
             <div className="text-5xl font-serif text-brand-dark font-bold">4.6</div>
             <div className="flex flex-col">
               <div className="flex text-brand-gold">
-                {[...Array(5)].map((_, i) => <Star key={i} fill="currentColor" size={20} />)}
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} fill={i < 4 ? "currentColor" : "none"} stroke="currentColor" size={20} />
+                ))}
               </div>
               <span className="text-gray-500 text-sm font-bold uppercase tracking-wider mt-1">On Google</span>
             </div>

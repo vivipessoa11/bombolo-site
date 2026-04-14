@@ -82,10 +82,10 @@ const Locations: React.FC<LocationsProps> = ({ language }) => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <Reveal width="100%">
-            <h2 className="text-brand-gold font-bold tracking-widest uppercase text-sm mb-3 text-center">{t.visit}</h2>
+            <span className="text-brand-gold font-bold tracking-widest uppercase text-sm mb-3 text-center block">{t.visit}</span>
           </Reveal>
           <Reveal width="100%" delay={200}>
-            <h3 className="font-serif text-4xl md:text-5xl text-white text-center">{t.locations}</h3>
+            <h2 className="font-serif text-4xl md:text-5xl text-white text-center">{t.locations}</h2>
           </Reveal>
         </div>
 

@@ -109,10 +109,10 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
          { name: 'Passion Fruit', desc: language === 'GR' ? 'Sorbet φρούτου.' : 'Fruit based sorbet.' },
       ],
       nosugar: [
-         { name: 'Pistacchio 0%', desc: 'Κρέμα φυστικιού χωρίς ζάχαρη.' },
-         { name: 'Cioccolato 0%', desc: 'Σοκολάτα χωρίς ζάχαρη.' },
-         { name: 'Fior di Latte 0%', desc: 'ΑΝΘΟΓΑΛΑ χωρίς ζάχαρη.' },
-         { name: 'Fragola 0%', desc: 'Φράουλα χωρίς ζάχαρη.' },
+         { name: 'Pistacchio 0%', desc: language === 'GR' ? 'Κρέμα φυστικιού χωρίς ζάχαρη.' : 'Pistachio cream, no added sugar.' },
+         { name: 'Cioccolato 0%', desc: language === 'GR' ? 'Σοκολάτα χωρίς ζάχαρη.' : 'Chocolate, no added sugar.' },
+         { name: 'Fior di Latte 0%', desc: language === 'GR' ? 'ΑΝΘΟΓΑΛΑ χωρίς ζάχαρη.' : 'Fior di Latte, no added sugar.' },
+         { name: 'Fragola 0%', desc: language === 'GR' ? 'Φράουλα χωρίς ζάχαρη.' : 'Strawberry, no added sugar.' },
       ],
    };
 
@@ -140,10 +140,10 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
          <div className="container mx-auto px-4 md:px-12">
             <div className="text-center mb-12 md:mb-16">
                <Reveal width="100%">
-                  <h2 className="text-brand-gold font-bold tracking-widest uppercase text-sm mb-3 text-center">{t.heading}</h2>
+                  <span className="text-brand-gold font-bold tracking-widest uppercase text-sm mb-3 text-center block">{t.heading}</span>
                </Reveal>
                <Reveal width="100%" delay={200}>
-                  <h3 className="font-serif text-4xl md:text-6xl text-brand-dark text-center">{t.title}</h3>
+                  <h2 className="font-serif text-4xl md:text-6xl text-brand-dark text-center">{t.title}</h2>
                </Reveal>
                <Reveal width="100%" delay={400}>
                   <p className="mt-4 text-gray-600 max-w-2xl mx-auto italic font-serif text-lg text-center">
@@ -250,7 +250,7 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                               loading="lazy"
                            />
                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                              <h2 className="font-serif text-4xl md:text-5xl text-white drop-shadow-lg">{t.dailyFresh}</h2>
+                              <h3 className="font-serif text-4xl md:text-5xl text-white drop-shadow-lg">{t.dailyFresh}</h3>
                            </div>
                         </div>
 
@@ -332,6 +332,7 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                                        </div>
                                        <button
                                           onClick={() => setActiveFlavorCategory(null)}
+                                          aria-label="Close"
                                           className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                                        >
                                           <X size={24} className="text-gray-500" />
@@ -377,7 +378,7 @@ const MenuHighlights: React.FC<MenuHighlightsProps> = ({ language }) => {
                            <div className="bg-brand-cream/50 rounded-xl p-8 border border-brand-gold/20 mb-16 shadow-inner">
                               <h3 className="font-serif text-3xl text-brand-dark mb-12 text-center border-b border-brand-gold/20 pb-4 inline-block w-full">{t.serviceOptions}</h3>
 
-                              <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-12 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 hide-scrollbar">
+                              <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-12 overflow-x-auto snap-x snap-mandatory pb-6 md:pb-0 scrollbar-hide">
                                  {/* Vertical Dividers for Desktop */}
                                  <div className="hidden md:block absolute top-4 bottom-4 left-1/3 w-px bg-brand-dark/10"></div>
                                  <div className="hidden md:block absolute top-4 bottom-4 right-1/3 w-px bg-brand-dark/10"></div>
