@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Bombolo Gelato | Authentic Italian Gelato in Thessaloniki</title>
   <meta name="description"
     content="Discover the best artisanal gelato in Thessaloniki. Neo-Mediterranean flavors, authentic Belgian waffles, and premium desserts. Handcrafted daily." />
@@ -31,34 +34,64 @@
 
   <!-- Schema Markup (JSON-LD) -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Bombolo Gelato",
-      "image": "https://bombolo.gr/logo2.png",
-      "telephone": "+30 231 022 9398",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Mitropoleos 88",
-        "addressLocality": "Thessaloniki",
-        "postalCode": "546 22",
-        "addressCountry": "GR"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Bombolo Gelato - Mitropoleos",
+        "image": "https://bombologelato.com/pistachio.jpg",
+        "telephone": "+30 231 022 9398",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Mitropoleos 88",
+          "addressLocality": "Thessaloniki",
+          "postalCode": "546 22",
+          "addressCountry": "GR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.6322,
+          "longitude": 22.9408
+        },
+        "url": "https://bombologelato.com",
+        "sameAs": [
+          "https://www.instagram.com/bomboloskg",
+          "https://www.facebook.com/bomboloskg",
+          "https://www.tiktok.com/@bombologelato",
+          "https://wolt.com/en/grc/thessaloniki/restaurant/bombolo"
+        ],
+        "servesCuisine": ["Gelato", "Ice Cream", "Desserts", "Coffee", "Waffles"],
+        "priceRange": "$$"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 40.6322,
-        "longitude": 22.9408
-      },
-      "url": "https://bombolo.gr",
-      "sameAs": [
-        "https://www.instagram.com/bomboloskg",
-        "https://www.facebook.com/bomboloskg",
-        "https://www.tiktok.com/@bombologelato",
-        "https://wolt.com/en/grc/thessaloniki/restaurant/bombolo"
-      ],
-      "servesCuisine": ["Gelato", "Ice Cream", "Desserts", "Coffee", "Waffles"],
-      "priceRange": "$$"
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Bombolo Gelato - Toumpa",
+        "image": "https://bombologelato.com/pistachio.jpg",
+        "telephone": "+30 231 022 9398",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Grigoriou Lampraki 150",
+          "addressLocality": "Thessaloniki",
+          "postalCode": "543 51",
+          "addressCountry": "GR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 40.6142,
+          "longitude": 22.9635
+        },
+        "url": "https://bombologelato.com",
+        "sameAs": [
+          "https://www.instagram.com/bomboloskg",
+          "https://www.facebook.com/bomboloskg",
+          "https://www.tiktok.com/@bombologelato",
+          "https://wolt.com/en/grc/thessaloniki/restaurant/bombolo"
+        ],
+        "servesCuisine": ["Gelato", "Ice Cream", "Desserts", "Coffee", "Waffles"],
+        "priceRange": "$$"
+      }
+    ]
   </script>
 
   <!-- Favicon (Brand "Ok" Hand/Logo Concept) -->
@@ -70,68 +103,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
     rel="stylesheet">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind Config -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
-            sans: ['"Lato"', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              dark: '#2B1A17', // Dark brown (background)
-              gold: '#C59A3B', // Premium gold (discreto)
-              cream: '#F6F0E8', // Elegant off-white (text/fundo luxuoso)
-              text: '#3A2320', // Text brown
-              pistachio: '#93C572', // Keeping for accents if needed, or replace if strict
-              berry: '#8B2E3E', // Keeping for accents
-              surface: '#F6F0E8', // Matching cream
-            }
-          },
-          animation: {
-            'subtle-scale': 'subtle-scale 20s ease-in-out infinite alternate',
-            'slide-up': 'slideUp 0.8s ease-out forwards',
-            'fade-in': 'fadeIn 1s ease-out forwards',
-          },
-          keyframes: {
-            'subtle-scale': {
-              '0%': { transform: 'scale(1.0)' },
-              '100%': { transform: 'scale(1.05)' },
-            },
-            slideUp: {
-              'from': { opacity: '0', transform: 'translateY(30px)' },
-              'to': { opacity: '1', transform: 'translateY(0)' },
-            },
-            fadeIn: {
-              'from': { opacity: '0' },
-              'to': { opacity: '1' },
-            }
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    /* Smooth scrolling for anchor links */
-    html {
-      scroll-behavior: smooth;
-    }
-
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
 
 </head>
 

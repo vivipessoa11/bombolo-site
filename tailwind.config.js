@@ -9,13 +9,17 @@ export default {
         extend: {
             colors: {
                 brand: {
+                    dark: '#2B1A17',
+                    gold: '#C59A3B',
+                    cream: '#F6F0E8',
+                    text: '#3A2320',
+                    pistachio: '#93C572',
+                    berry: '#8B2E3E',
+                    surface: '#F6F0E8',
                     red: '#691f06',
                     green: '#1B4D3E',
                     brown: '#2C1810',
-                    light: '#f9f9f9',
-                    cream: '#f9f9f9', // Mapping cream to light for compatibility if used elsewhere
-                    gold: '#D4C4A8', // Keeping gold as legacy or accent if needed, or mapping to something else? User didn't specify gold removal, but "Neutrals" list didn't include it. I'll keep it for now to avoid breaking other things, but prioritize the new palette.
-                    dark: '#2C1810', // Mapping dark to brown for compatibility
+                    light: '#F6F0E8',
                 }
             },
             fontFamily: {
@@ -26,10 +30,25 @@ export default {
                 shimmer: {
                     '0%': { backgroundPosition: '200% center' },
                     '100%': { backgroundPosition: '-200% center' },
-                }
+                },
+                'subtle-scale': {
+                    '0%': { transform: 'scale(1.0)' },
+                    '100%': { transform: 'scale(1.05)' },
+                },
+                slideUp: {
+                    from: { opacity: '0', transform: 'translateY(30px)' },
+                    to: { opacity: '1', transform: 'translateY(0)' },
+                },
+                fadeIn: {
+                    from: { opacity: '0' },
+                    to: { opacity: '1' },
+                },
             },
             animation: {
                 shimmer: 'shimmer 8s linear infinite',
+                'subtle-scale': 'subtle-scale 20s ease-in-out infinite alternate',
+                'slide-up': 'slideUp 0.8s ease-out forwards',
+                'fade-in': 'fadeIn 1s ease-out forwards',
             },
         },
     },
