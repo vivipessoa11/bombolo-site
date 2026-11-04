@@ -16,6 +16,7 @@ import MobileQuickMenu from './components/MobileQuickMenu';
 import CookieConsent from './components/CookieConsent';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
+import VotingPopup from './components/VotingPopup';
 
 
 export type Language = 'GR' | 'EN';
@@ -69,6 +70,7 @@ export default function App() {
       <StickySocials />
       <MobileQuickMenu language={language} onOpenDelivery={() => setIsDeliveryOpen(true)} />
       <CookieConsent language={language} />
+      <VotingPopup language={language} />
 
       {/* Modals */}
       <ContactForm
