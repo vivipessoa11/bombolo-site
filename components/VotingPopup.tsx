@@ -7,9 +7,10 @@ interface VotingPopupProps {
     language: Language;
 }
 
-const VOTING_URL = 'https://bestofthessaloniki.com/voting-top-100-awards/';
-// Voting closes Monday 18 January 2027, 12:59 Greek time (UTC+2)
-const VOTING_DEADLINE = new Date('2027-01-18T12:59:00+02:00');
+export const VOTING_URL = 'https://bestofthessaloniki.com/voting-top-100-awards/';
+// Voting closes Monday 18 January 2027, 13:00 Greek time (UTC+2)
+export const VOTING_DEADLINE = new Date('2027-01-18T13:00:00+02:00');
+const TERMS_URL = 'https://bestofthessaloniki.com/%CE%BF%CF%81%CE%BF%CE%B9-%CF%83%CF%85%CE%BC%CE%BC%CE%B5%CF%84%CE%BF%CF%87%CE%B7%CF%83-%CE%B4%CE%B9%CE%B1%CE%B3%CF%89%CE%BD%CE%B9%CF%83%CE%BC%CE%BF%CF%85-best-of-thessaloniki-top-100-food-drink-award/';
 const STORAGE_KEY = 'votingPopupDismissedAt';
 // After closing, show again only after 3 days
 const HIDE_FOR_MS = 3 * 24 * 60 * 60 * 1000;
@@ -60,25 +61,35 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
     const t = language === 'GR'
         ? {
             badge: 'TOP 100 Food & Drink Awards 2026',
-            title: 'Ψήφισε Bombolo & κέρδισε ταξίδι!',
+            title: 'Ψήφισε Bombolo & μπες στην κλήρωση!',
             text: 'Είμαστε υποψήφιοι στην κατηγορία',
             category: 'Ice Cream',
-            prize: 'Με την ψήφο σου μπαίνεις αυτόματα στην κλήρωση για ταξίδι στην Αίγυπτο για 2 άτομα.',
-            how: 'Διαλέγεις ένα αγαπημένο σε κάθε κατηγορία. Το Ice Cream είναι προς το τέλος της λίστας 😉',
+            prize: 'Ψήφισε και μπες στην κλήρωση για ταξίδι στην Αίγυπτο για δύο.',
+            steps: [
+                'Επίλεξε Bombolo στην κατηγορία «Ice Cream»',
+                'Διάλεξε μία επιλογή και στις 17 κατηγορίες — απαιτείται για την υποβολή',
+                'Υπόβαλε με όνομα και email — μία ψήφος ανά email',
+            ],
+            terms: '18+, κάτοικοι Ελλάδας· ισχύουν όροι',
             cta: 'Ψήφισε τώρα',
             later: 'Ίσως αργότερα',
-            deadline: 'Η ψηφοφορία λήγει 18/01/2027',
+            deadline: 'Λήξη ψηφοφορίας: 18/01/2027',
         }
         : {
             badge: 'TOP 100 Food & Drink Awards 2026',
-            title: 'Vote Bombolo & win a trip!',
+            title: 'Vote Bombolo & enter the draw!',
             text: 'We are nominated in the category',
             category: 'Ice Cream',
-            prize: 'By voting, you are automatically entered into the draw for a trip to Egypt for 2 people.',
-            how: 'Pick one favourite in each category. Ice Cream is near the end of the list 😉',
+            prize: 'Vote and enter the draw for a trip to Egypt for two.',
+            steps: [
+                'Choose Bombolo in "Ice Cream"',
+                'Select one option in all 17 categories (required to submit)',
+                'Submit with your name and email — one vote per email',
+            ],
+            terms: '18+, residents of Greece; terms apply',
             cta: 'Vote now',
             later: 'Maybe later',
-            deadline: 'Voting closes 18/01/2027',
+            deadline: 'Voting ends 18/01/2027',
         };
 
     return (
@@ -137,7 +148,14 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                         <p className="text-sm text-brand-text leading-relaxed">{t.prize}</p>
                     </div>
 
-                    <p className="text-xs text-gray-500 mb-6 leading-relaxed">{t.how}</p>
+                    <ol className="text-left text-xs text-gray-600 mb-6 space-y-2">
+                        {t.steps.map((step, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                                <span className="shrink-0 w-5 h-5 rounded-full bg-brand-gold text-brand-dark font-bold flex items-center justify-center text-[11px]">{i + 1}</span>
+                                <span className="leading-relaxed">{step}</span>
+                            </li>
+                        ))}
+                    </ol>
 
                     <a
                         href={VOTING_URL}
@@ -159,6 +177,14 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                     <p className="mt-4 text-[11px] uppercase tracking-widest text-brand-gold font-bold">
                         {t.deadline}
                     </p>
+                    <a
+                        href={TERMS_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-block text-[11px] text-gray-500 hover:text-brand-dark underline underline-offset-2"
+                    >
+                        {t.terms}
+                    </a>
                 </div>
             </div>
         </div>
