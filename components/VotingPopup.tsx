@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { X, Plane, Trophy } from 'lucide-react';
 import { Language } from '../App';
-import coneGelato from '../src/assets/conegelato.webp';
 
 interface VotingPopupProps {
     language: Language;
@@ -71,6 +70,7 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                 'Υπόβαλε με όνομα και email — μία ψήφος ανά email',
             ],
             terms: '18+, κάτοικοι Ελλάδας· ισχύουν όροι',
+            photoAlt: 'Γυναίκα δοκιμάζει gelato Bombolo μπροστά στις πυραμίδες της Αιγύπτου',
             cta: 'Ψήφισε τώρα',
             later: 'Ίσως αργότερα',
             deadline: 'Λήξη ψηφοφορίας: 18/01/2027',
@@ -87,6 +87,7 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                 'Submit with your name and email — one vote per email',
             ],
             terms: '18+, residents of Greece; terms apply',
+            photoAlt: 'Woman tasting Bombolo gelato in front of the Egyptian pyramids',
             cta: 'Vote now',
             later: 'Maybe later',
             deadline: 'Voting ends 18/01/2027',
@@ -104,7 +105,7 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                 onClick={close}
             ></div>
 
-            <div className="relative bg-brand-cream w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up max-h-[92vh] overflow-y-auto">
+            <div className="relative bg-brand-cream w-full max-w-md rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up max-h-[calc(100dvh-1.5rem)] overflow-y-auto">
                 <button
                     onClick={close}
                     aria-label={language === 'GR' ? 'Κλείσιμο' : 'Close'}
@@ -113,46 +114,49 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                     <X size={20} className="text-brand-dark" />
                 </button>
 
-                <div className="relative h-40 sm:h-48 bg-brand-dark">
+                <div className="relative aspect-video bg-brand-dark">
                     <img
-                        src={coneGelato}
-                        alt="Bombolo gelato"
-                        className="w-full h-full object-cover opacity-80"
+                        src="/voting-egypt.webp"
+                        alt={t.photoAlt}
+                        width={1152}
+                        height={648}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover object-center rounded-t-2xl"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/30 to-transparent"></div>
-                    <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-brand-gold text-brand-dark text-[11px] font-bold uppercase tracking-widest rounded-full shadow-lg">
-                            <Trophy size={14} />
-                            {t.badge}
+                    <div className="absolute top-3 left-3 max-w-[11.75rem]">
+                        <span className="inline-flex max-w-full items-start gap-1.5 px-2.5 py-1 bg-brand-gold text-brand-dark text-[10px] sm:text-[11px] font-bold uppercase tracking-wide rounded-2xl shadow-lg">
+                            <Trophy size={14} className="shrink-0 mt-0.5" />
+                            <span className="leading-tight text-left">{t.badge}</span>
                         </span>
                     </div>
                 </div>
 
-                <div className="p-6 sm:p-8 text-center">
+                <div className="px-4 py-3 sm:p-6 text-center">
                     <h3
                         id="voting-popup-title"
-                        className="font-serif text-2xl sm:text-3xl text-brand-dark mb-3 leading-tight"
+                        className="font-serif text-xl sm:text-3xl text-brand-dark mb-2 sm:mb-3 leading-tight"
                     >
                         {t.title}
                     </h3>
 
-                    <p className="text-brand-text mb-5">
+                    <p className="text-sm sm:text-base text-brand-text mb-3 sm:mb-5">
                         {t.text}{' '}
                         <strong className="text-brand-red">🍨 {t.category}</strong>
                     </p>
 
-                    <div className="flex items-start gap-3 text-left bg-white rounded-xl p-4 mb-4 border border-brand-gold/30">
+                    <div className="flex items-start gap-3 text-left bg-white rounded-xl p-3 sm:p-4 mb-3 sm:mb-4 border border-brand-gold/30">
                         <div className="p-2 bg-brand-gold/15 rounded-full text-brand-gold shrink-0">
                             <Plane size={20} />
                         </div>
                         <p className="text-sm text-brand-text leading-relaxed">{t.prize}</p>
                     </div>
 
-                    <ol className="text-left text-xs text-gray-600 mb-6 space-y-2">
+                    <ol className="text-left text-xs text-gray-600 mb-3 sm:mb-4 space-y-1.5">
                         {t.steps.map((step, i) => (
                             <li key={i} className="flex items-start gap-2">
                                 <span className="shrink-0 w-5 h-5 rounded-full bg-brand-gold text-brand-dark font-bold flex items-center justify-center text-[11px]">{i + 1}</span>
-                                <span className="leading-relaxed">{step}</span>
+                                <span className="leading-snug">{step}</span>
                             </li>
                         ))}
                     </ol>
@@ -162,26 +166,26 @@ const VotingPopup: React.FC<VotingPopupProps> = ({ language }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={close}
-                        className="block w-full py-4 bg-brand-dark text-brand-gold font-bold uppercase tracking-widest text-sm rounded-xl hover:bg-brand-gold hover:text-brand-dark transition-colors shadow-lg"
+                        className="block w-full py-3 sm:py-4 bg-brand-dark text-brand-gold font-bold uppercase tracking-widest text-sm rounded-xl hover:bg-brand-gold hover:text-brand-dark transition-colors shadow-lg"
                     >
                         {t.cta} 🤎
                     </a>
 
                     <button
                         onClick={close}
-                        className="mt-3 text-xs text-gray-500 hover:text-brand-dark underline underline-offset-2"
+                        className="mt-2 sm:mt-3 text-xs text-gray-500 hover:text-brand-dark underline underline-offset-2"
                     >
                         {t.later}
                     </button>
 
-                    <p className="mt-4 text-[11px] uppercase tracking-widest text-brand-gold font-bold">
+                    <p className="mt-2 sm:mt-3 text-[11px] uppercase tracking-widest text-brand-gold font-bold">
                         {t.deadline}
                     </p>
                     <a
                         href={TERMS_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-2 inline-block text-[11px] text-gray-500 hover:text-brand-dark underline underline-offset-2"
+                        className="mt-1 inline-block text-[11px] text-gray-500 hover:text-brand-dark underline underline-offset-2"
                     >
                         {t.terms}
                     </a>
