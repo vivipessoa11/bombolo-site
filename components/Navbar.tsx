@@ -124,7 +124,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onOpenContact, onOpenDelivery
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 lg:hidden transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none delay-200'
+        className={`fixed top-[var(--banner-h,0px)] left-0 right-0 bottom-0 z-40 lg:hidden transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none delay-200'
           }`}
       >
         {/* Backdrop */}
