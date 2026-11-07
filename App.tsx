@@ -17,6 +17,7 @@ import CookieConsent from './components/CookieConsent';
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
 import VotingPopup from './components/VotingPopup';
+import VotingBanner from './components/VotingBanner';
 
 
 export type Language = 'GR' | 'EN';
@@ -60,6 +61,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full">
       <Preloader />
       <CustomCursor />
+      <VotingBanner language={language} />
       <Navbar
         scrolled={scrolled}
         onOpenContact={() => handleOpenContact()}
